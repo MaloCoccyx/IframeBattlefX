@@ -10,4 +10,4 @@
 >
 > Une interface de **commande à distance**.
 >
-> Un **mode manuel** en mode **supervision** et un **mode autonome** en mode **"iframe"**
+> Un **mode manuel** en **"supervision"** et un **mode autonome** en **"iframe"**
