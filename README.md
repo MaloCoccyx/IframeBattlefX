@@ -2,7 +2,7 @@
 
 ## En tant qu'utilisateur je veux avoir
 
-> Une **couleur qui se démarquent** suivant l'état du robot
+> Une **couleur qui se démarque** suivant l'état du robot
 >
 > **Des mélodies simples**
 >
@@ -10,4 +10,4 @@
 >
 > Une interface de **commande à distance**.
 >
-> **Un mode autonome**
+> Un **mode manuel** en mode **supervision** et un **mode autonome** en mode **"iframe"**
