@@ -6,11 +6,14 @@ Le projet **IframeBattlefX** consiste en un **site web** possédant une **interf
 Le **client** demande à ce que le robot ait un **thème unique**, une couleur différente suivant l'**état en temps réel du robot**, pouvoir **tirer**, avoir des **mélodies uniques** selon le **thème choisie** et ce pour **chaques états** ("tirer", "déplacement", "perte de vie", "mort").
 
 Le site devra:
+* Récupérer le nom du robot par **URL** (**GET**) et se **connecter automatiquement** à l'arène 
+* Le robot ne devra pas **dépasser une case** de la **grille de l'arène** et s'**adapter** automatiquement à la taille de cette dernière
 * Afficher les **différents états** du robot, ses **munitions** et son **nom**
 * Afficher le robot selon le **thème choisi par le client** en vue du dessus
 * Emettre des mélodies **différentes** et selon le **thème** choisi suivant l'**état du robot**
 * Permettre les **déplacements** selon les points **cardinaux** ("Est", "Sud", "Ouest" et "Nord")
-* Être **responsive** et avoir un affichage **minimaliste** en mode **"iframe"** contenant seulement les informations **importantes**
+* Être **responsive** (s'afficher en fonction de l'appareil utilsé, "***PC**", "**Tablette**" et "**Téléphone**")
+* Avoir un affichage **minimaliste** en mode **"iframe"** contenant seulement les informations **importantes**
 * Pouvoir **contrôler** le robot dans l'arène
 * Pouvoir passer du mode **manuel** au mode **automatique**
 
