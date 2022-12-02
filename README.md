@@ -7,7 +7,7 @@
 
 Le projet **IframeBattlefX** consiste en un **site web** possédant une **interface reliée à un robot** contrôlé par un **utilisateur en mode manuel** et avoir un **mode automatique**, pour que ce dernier puisse **combattre dans une arène**, cette dernière étant gérer par un **administrateur**.
 
-Le **client** demande à ce que le robot ait un **thème unique**, une couleur différente suivant l'**état en temps réel du robot**, pouvoir **tirer**, avoir des **mélodies uniques** selon le **thème choisie** et ce pour **chaques états** ("tirer", "déplacement", "perte de vie", "mort").
+Le **client** demande à ce que le robot ait un **thème unique**, une couleur différente suivant l'**état en temps réel du robot**, pouvoir **tirer**, avoir des **mélodies uniques** selon le **thème choisie** et ce pour **chaques états** ("tirer", "déplacement", "perte de vie", "mort", "rotation").
 
 Le site devra:
 * Récupérer le nom du robot par **URL** (**GET**) et se **connecter automatiquement** à l'arène 
@@ -15,7 +15,7 @@ Le site devra:
 * Afficher les **différents états** du robot, ses **munitions** et son **nom**
 * Afficher le robot selon le **thème choisi par le client** en vue du dessus
 * Emettre des mélodies **différentes** et selon le **thème** choisi suivant l'**état du robot**
-* Permettre les **déplacements** selon les points **cardinaux** ("Est", "Sud", "Ouest" et "Nord")
+* Permettre les **déplacements** selon les points **cardinaux** ("Est", "Sud", "Ouest" et "Nord") et la **rotation**
 * Être **responsive** (s'afficher en fonction de l'appareil utilsé, "***PC**", "**Tablette**" et "**Téléphone**")
 * Le contrôle **manuel** ne pourra se faire que si l'**appareil utilisé le permet**
 * Avoir un affichage **minimaliste** en mode **"iframe"** contenant seulement les informations **importantes**
@@ -33,7 +33,7 @@ En tant qu'utilisateur je veux avoir
 * Voir les informations sur l'**état du robot**, de **ses munitions** et son **nom**
 * **Des mélodies simples** et **reconnaissables** suivant le **thème choisi** et l'**état du robot**
 * Un robot ayant **l'apparence du thème choisi** en vue du dessus
-* Une interface de **commande à distance** facile d'accès
+* Une interface de **commande à distance** facile d'accès, permettant les **déplacements** selon les points **cardinaux** ("Est", "Sud", "Ouest" et "Nord") et la **rotation**
 * Un **mode manuel** ou **automatique** en **"supervision"** et seulement le **mode autonome** en **"iframe"**
 * Un site **ergonomique** et **responsive** sur **une seule page**
 * La version **"iframe"** devra simplement contenir le **nom**, **l'état**, les **munitions**, faire les **mélodies** et voir le **robot (vue du dessus)**
