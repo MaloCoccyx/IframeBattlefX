@@ -1,0 +1,78 @@
+<html lang="fr">
+    <head>
+        <title>IframeBattlefX - Nom du robot - Iframe</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="script.js">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="description" content="IframeBattlefx est un site permettant à un utilisateur de contrôler un robot à distance dans une arène, le robot ayant un thème choisi par l'utilisateur">
+    </head>
+    <body>
+        <main>
+            <div class="centerTitle">
+                <div class="title fullWidth">
+                    <h1>IframeBattlefX - Supervision</h1>
+                </div>
+            </div>
+            
+            <div class="centerTitle">
+                <div class="flex flex5"></div>
+                    <div class="title half">
+                        <h2 id="robotName">Nom du robot</h2>
+                    </div>
+                <div class="flex flex5"></div>  
+                <div id="infosRobot" class="flex flex30 wrap">
+                    <div id="life" class="flex">
+                        <span class="life">
+                            <strong>Vie :</strong> 50/100
+                            <progress class="fullWidth" bar></progress>
+                        </span>
+                    </div>                
+                    <div id="ammo" class="flex wrap">
+                        <span class="ammo">
+                            <strong>Munitions :</strong> 50/100
+                            <progress class="fullWidth" bar></progress>
+                        </span>
+                    </div>  
+                </div>
+                <div class="flex flex5"></div>  
+            </div>
+            <div id="main">
+                <div id="robot" class="flex state-online">
+                    <img src="img/mario_pixel_art.png" alt="Mario">
+                </div>
+                <div class="flex flex5"></div> 
+                <div id="infos" class="flex">
+                    <div id="legend">
+                        <h2">Légende</h2>
+                    </div>
+                    <div class="colorLegend">
+                        <span class="loose-pv"></span><span>Perte de PVs</span>
+                        <span class="fire"></span><span>Tir</span>
+                        <span class="dead"></span><span>Mort</span>
+                        <span class="online"></span><span>Connecté</span>
+                    </div>
+                </div>
+            </div>
+            <div id="movements">
+                <img src="img/curved-arrow-left-ouline-icon.svg" alt="Move left" class="left">
+                <img src="img/curved-arrow-right-ouline-icon.svg" alt="Move right" class="right">
+                <span>N</span><span>E</span><span>S</span><span>O</span>
+            </div>
+            <div id="actions">
+                <div id="controlMode">
+                    <h5>Mode automatique</h5>
+                    <input type="button">
+                    <input type="button" value="">
+                </div>
+                <div id="controlSong">
+                    <h5>Mélodie</h5>
+                    <input type="button" value="">
+                    <input type="button" value="">
+                </div>
+                <div id="actionFire">
+                    <input type="button" value="Tirer">
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
