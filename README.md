@@ -9,20 +9,6 @@ Le projet **IframeBattlefX** consiste en un **site web** possédant une **interf
 
 Le **client** demande à ce que le robot ait un **thème unique**, une couleur différente suivant l'**état en temps réel du robot**, pouvoir **tirer**, avoir des **mélodies uniques** selon le **thème choisie** et ce pour **chaques états** ("tirer", "déplacement", "perte de vie", "mort", "rotation").
 
-Le site devra:
-* Récupérer le nom du robot par **URL** (**GET**) et se **connecter automatiquement** à l'arène 
-* Le robot ne devra pas **dépasser une case** de la **grille de l'arène** et s'**adapter** automatiquement à la taille de cette dernière
-* Afficher les **différents états** du robot, ses **munitions** et son **nom**
-* Afficher le robot selon le **thème choisi par le client** en vue du dessus
-* Emettre des mélodies **différentes** et selon le **thème** choisi suivant l'**état du robot**
-* Permettre les **déplacements** selon les points **cardinaux** ("Est", "Sud", "Ouest" et "Nord") et la **rotation**
-* Être **responsive** (s'afficher en fonction de l'appareil utilsé, "***PC**", "**Tablette**" et "**Téléphone**")
-* Le contrôle **manuel** ne pourra se faire que si l'**appareil utilisé le permet**
-* Avoir un affichage **minimaliste** en mode **"iframe"** contenant seulement les informations **importantes**
-* Pouvoir **contrôler** le robot dans l'arène
-* Pouvoir passer du mode **manuel** au mode **automatique**
-* Tout ceci devra être sur **une seule page** en utilisant le **HTML** et le **CSS**
-
 Le **Javascript** sera le language utilisé pour **contôler** le robot, **émettre la couleur** et **les mélodies** suivant l'**état de ce dernier** ainsi que pour **récupérer les informations en temps réel** ("état", "munition", "point de vie") le **HTML** et **CSS** serviront quand à eux à **afficher** et **styliser** (la mise en page) les **informations récupérées** en **javascript** et permettre l'utilisation sur différents appareils ("**PC**", "**Tablette**" et "**Téléphone**".
 
 
@@ -36,7 +22,16 @@ En tant qu'utilisateur je veux avoir
 * Une interface de **commande à distance** facile d'accès, permettant les **déplacements** selon les points **cardinaux** ("Est", "Sud", "Ouest" et "Nord") et la **rotation**
 * Un **mode manuel** ou **automatique** en **"supervision"** et seulement le **mode autonome** en **"iframe"**
 * Un site **ergonomique** et **responsive** sur **une seule page**
+* Être **responsive** (s'afficher en fonction de l'appareil utilsé, "***PC**", "**Tablette**" et "**Téléphone**")
+* Le contrôle **manuel** ne pourra se faire que si l'**appareil utilisé le permet**
 * La version **"iframe"** devra simplement contenir le **nom**, **l'état**, les **munitions**, faire les **mélodies** et voir le **robot (vue du dessus)**
+
+En tant qu'administrateur je veux avoir:
+
+* Récupérer le nom du robot par **URL** (**GET**) et se **connecter automatiquement** à l'arène 
+* Avoir un affichage **minimaliste** en mode **"iframe"** contenant seulement les informations **importantes***
+* Afficher le robot selon le **thème choisi par le client** en vue du dessus
+* Le robot ne devra pas **dépasser une case** de la **grille de l'arène** et s'**adapter** automatiquement à la taille de cette dernière
 
 ## Fariqué avec
 
