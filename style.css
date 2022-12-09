@@ -22,27 +22,25 @@ html{
 }
 
 body{
-    /*
-    background-image: url("https://images5.alphacoders.com/318/318370.jpg");
-}
-
-main{*/
     margin: 0px;
     padding: 0px;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     justify-content: center;
-    align-content: center;
     height: 100%;
     width: 100%;
 }
-/*
-body  > img {
-    width: 100vmin;
-    height: 100vmin;
+
+main{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: stretch;
 }
-*/
 .fullWidth{
     width: 100%;
 }
@@ -51,22 +49,34 @@ body  > img {
     height: 100%;
 }
 
-.half{
+.halfWidth{
     width: 50%;
 }
 
 .flex{
     display: flex;
     text-align: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
 }
+
+div#controlWest {}
 
 .wrap{
     flex-wrap: wrap;
 }
 
+.noWrap{
+    flex-wrap: nowrap;
+}
+
 .flex5{
+    width: 5%;
+}
+
+.flex10{
     width: 5%;
 }
 
@@ -78,20 +88,35 @@ body  > img {
     width: 30%;
 }
 
+.flex40{
+    width: 40%;
+}
+
+button{
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    background-repeat: no-repeat;
+    background-size: 45px;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 img.left, img.right{
     width: 40px;
     height: 40px;
 }
 
+#iFrame{
+    display: none;
+}
+
 /*******************/
 /* Titles & States */
 /*******************/
-
-.centerTitle{
-    display: flex;
-    width: 100%;
-    margin: 30px 0px;
-}
 
 .title, #infosRobot, #legend{
     border: 1px white solid;
@@ -99,6 +124,10 @@ img.left, img.right{
     font-weight: bolder;
     display: flex;
     align-items: center;
+}
+
+#infoRobot{
+    flex-direction: column;
 }
 
 .title{
@@ -111,22 +140,10 @@ img.left, img.right{
     text-shadow: 3px 3px black;
 }
 
-#info{
-    width: 100%;
-    display: inline;
-    padding: 5px;
-}
-
-.colorLegend{
-    display: block;
-    width: 100%;
-    padding: 5px;
-
-}
-
 #life, #ammo{
     width: 100%;
     padding: 5px;
+    display: block;
 }
 
 #life > span, #ammo > span{
@@ -140,42 +157,46 @@ img.left, img.right{
 /******************/
 
 #main{
+    max-height: 250px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     align-content: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: nowrap;
     flex-direction: row;
 }
 
 #robot{
-    width: 60%;
+    width: 40%;
+    max-width: 250px;
     height: 100%;
     flex-direction: row;
-    border: 2px solid red;
-    box-shadow: 1px 1px red;
-    background: rgba(0, 0,0,0.7);
     padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
-#robot.state-online{
+.border{
+    border: 2px solid;
+}
+
+.state-online{
     border-color: rgb(0, 206, 0);
     box-shadow: 1px 1px rgb(0, 206, 0);
 }
 
-#robot.state-takeDamage{
+.state-takeDamage{
     border-color: rgb(255, 153, 0);
     box-shadow: 1px 1px rgb(255, 153, 0);
 }
 
-#robot.state-fire{
+.state-fire{
     border-color: rgb(192, 21, 152);
     box-shadow: 1px 1px rgb(192, 21, 152);
 }
 
-#robot.state-dead{
+.state-dead{
     border-color: rgb(199, 0, 0);
-    box-shadow: 1px 1px rgb(199, 0, 0);
+    box-shadow: 1px 1pxrgb(199, 0, 0) ;
 }
 
 #robot > img{
@@ -183,9 +204,283 @@ img.left, img.right{
     height: 100%;
 }
 
-#infos{
+#infosLegend{
     border: 1px solid #fff;
     background: rgba(0,0,0,0.7);
-    width: 35%;
-    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0px;
+}
+
+#legend {
+    width: 100%;
+    height: 20px;
+    display: block;
+    position: relative;
+    top: -1px;
+    left: -1px;
+} 
+
+.colorLegend{
+    display: flex;
+    width: 100%;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 5px 0px;
+}
+
+.legendMargin{
+    margin: 10px;
+    justify-content: flex-start;
+}
+
+.legendMargin > span{
+    border: none;
+    box-shadow: none;
+}
+
+.square{
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+span.state-online{
+    background-color: rgb(0, 206, 0);
+}
+
+.state-takeDamage{
+    background-color: rgb(255, 153, 0);
+}
+
+.state-fire{
+    background-color: rgb(192, 21, 152);
+}
+
+.state-dead{
+    background-color: rgb(199, 0, 0);
+}
+
+button#fire{
+    border: 1px solid white;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-weight: bolder;
+    width: 50%;
+}
+
+button#fire:hover{
+    border-color: black;
+    background: white;
+    color: black;
+    transition: 1s;
+}
+
+/*******************/
+/*     Actions     */
+/*******************/
+#actions{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+}
+
+/* Controller */
+
+#controller{
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    background: green;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.controllerTop{
+    justify-content: space-between;
+}
+
+.controllerCenter{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-top: -25px;
+}
+
+#controlWest> p{
+    margin-left: -50px;
+}
+
+#controlEast > p{
+    margin-left: 50px;
+}
+
+.controllerBottom{   
+    position: relative;
+    bottom: 10px;
+}
+
+/* Action Buttons */
+
+#actionsButtons{
+    align-items: flex-start;
+}
+
+/* Mode Auto/Manual */
+
+#controlMode, #controlSound{
+    background: rgba(0,0,0,0.7);
+    border: 1px solid white;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+#controlMode > .title, #controlSound > .title{
+    padding: 0px 2px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: -1px;
+    top: -1px;
+    width: 98%;
+}
+
+#controlMode > button#soundOn, #controlMode > button#fire{
+    display: none;
+}
+
+button#autoOn{
+    background-image: url("./img/turn-on-icon.svg");
+}
+
+button#autoOn:hover{
+    transition: 1s;
+    background-image: url("./img/turn-on-hover-icon.svg");
+}
+
+button#autoOff{
+    background-image: url("./img/turn-off-icon.svg");
+}
+
+button#autoOff:hover{
+    transition: 1s;
+    background-image: url("./img/turn-off-hover-icon.svg");
+}
+
+/* Melody On/Off */
+
+#controlSound > .title{
+    padding: 0px 2px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: -1px;
+    top: -1px;
+    width: 97%;
+}
+
+button#soundOff, button#soundOn{
+    background: white center no-repeat;
+    background-size: 40px;
+    border-radius: 25px;
+    border: 1px solid black;
+}
+
+button#soundOn{
+    background-image: url("./img/sound-on-icon.svg");
+}
+
+button#soundOn:hover{
+    transition: 1s;
+    background-image: url("./img/volume-mute-icon.svg");
+}
+
+button#soundOff{
+    background: white center no-repeat;
+    background-image: url("./img/volume-mute-icon.svg");
+    background-size: 40px;
+    border-radius: 25px;
+}
+
+button#soundOff:hover{
+    transition: 1s;
+    background-image: url("./img/sound-on-icon.svg");
+}
+
+
+@media (max-width: 550px), 
+       (max-height: 550px) {
+    *, .flex{
+        display: none;
+    }
+
+    html, body {
+        display: flex;
+        background: none;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    body > #iFrame{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #iframe > img{
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+
+    #iframe > div, #iframe > div > progress{
+        display: flex;
+        width: 75%;
+    }
+    #iframe > div > span{
+        color: black;
+        display: flex;
+        width: 40%;
+        font-size: 12px;
+    }
+}
+
+
+@media (max-width: 1050px){
+    .legendMargin > span{
+        font-size: 12px;
+    }
+
+    #controlMode{
+        width: 25%;
+    }
+
+    #controlMode > .title, #controlSound{
+        display: none;
+    }
+
+    #controlMode > button, #controlMode > button#soundOn, #controlMode > button#fire{
+        width: 30px;
+        height: 30px;
+        background-size: 25px;
+    }
 }

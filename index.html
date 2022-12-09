@@ -4,22 +4,21 @@
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="script.js">
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="IframeBattlefx est un site permettant à un utilisateur de contrôler un robot à distance dans une arène, le robot ayant un thème choisi par l'utilisateur">
     </head>
     <body>
         <main>
-            <div class="centerTitle">
+            <div id="title" class="flex fullWidth">
                 <div class="title fullWidth">
                     <h1>IframeBattlefX - Supervision</h1>
                 </div>
             </div>
             
-            <div class="centerTitle">
-                <div class="flex flex5"></div>
-                    <div class="title half">
+            <div id="subTitle" class="flex fullWidth">
+                    <div class="title halfWidth">
                         <h2 id="robotName">Nom du robot</h2>
                     </div>
-                <div class="flex flex5"></div>  
                 <div id="infosRobot" class="flex flex30 wrap">
                     <div id="life" class="flex">
                         <span class="life">
@@ -34,45 +33,87 @@
                         </span>
                     </div>  
                 </div>
-                <div class="flex flex5"></div>  
             </div>
-            <div id="main">
-                <div id="robot" class="flex state-online">
+            <div id="main" class="fullWidth">
+                <div class="flex flex5"></div> 
+                <div id="robot" class="flex border state-online">
                     <img src="img/mario_pixel_art.png" alt="Mario">
                 </div>
                 <div class="flex flex5"></div> 
-                <div id="infos" class="flex">
-                    <div id="legend">
-                        <h2">Légende</h2>
+                <div id="infos" class="flex flex25">
+                    <div id="infosLegend" class="flex">
+                        <div id="legend">
+                            <h2">Légende</h2>
+                        </div>
+                        <div class="colorLegend">
+                            <div class="flex fullWidth legendMargin">
+                                <span class="square state-takeDamage"></span><span>Perte de PVs</span>
+                            </div>
+                            <div class="flex fullWidth legendMargin">
+                                <span class="square state-fire"></span><span>Tir</span>
+                            </div>
+                            <div class="flex fullWidth legendMargin">
+                                <span class="square state-dead"></span><span>Mort</span>
+                            </div>
+                            <div class="flex fullWidth legendMargin">
+                                <span class="square state-online"></span><span>Connecté</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="colorLegend">
-                        <span class="loose-pv"></span><span>Perte de PVs</span>
-                        <span class="fire"></span><span>Tir</span>
-                        <span class="dead"></span><span>Mort</span>
-                        <span class="online"></span><span>Connecté</span>
+                    <button id="fire">
+                        <span>Tirer</span>
+                    </button>
+                </div>
+                <div class="flex flex5"></div> 
+            </div>
+            
+            <div id="actions" class="flex fullWidth">
+                <div id="movements" class="flex halfWidth">
+                    <div id="controller" class="flex fullWidth">
+                        <div class="flex controllerTop fullWidth">               
+                            <img src="img/curved-arrow-right-ouline-icon.svg" alt="Move right" class="right">
+                            <span>N</span>
+                            <img src="img/curved-arrow-left-ouline-icon.svg" alt="Move left" class="left">
+                        </div>
+                        <div class="flex controllerCenter fullWidth">
+                            <div id="controlWest" class="flex halfWidth"><p>O</p></div>  
+                            <div id="controlEast" class="flex halfWidth"><p>E</p></div>
+                        </div>
+                        <div class="flex controllerBottom fullWidth">
+                            <span>S</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="movements">
-                <img src="img/curved-arrow-left-ouline-icon.svg" alt="Move left" class="left">
-                <img src="img/curved-arrow-right-ouline-icon.svg" alt="Move right" class="right">
-                <span>N</span><span>E</span><span>S</span><span>O</span>
-            </div>
-            <div id="actions">
-                <div id="controlMode">
-                    <h5>Mode automatique</h5>
-                    <input type="button">
-                    <input type="button" value="">
-                </div>
-                <div id="controlSong">
-                    <h5>Mélodie</h5>
-                    <input type="button" value="">
-                    <input type="button" value="">
-                </div>
-                <div id="actionFire">
-                    <input type="button" value="Tirer">
+                <div id="actionsButtons" class="flex halfWidth">
+                    <div id="controlMode" class="flex halfWidth">
+                        <div class="title fullWidth">
+                            <h5>Mode automatique</h5>
+                        </div>
+                        <button id="autoOn"></button>
+                        <button id="soundOn"></button>
+                        <button id="fire"><span>Tirer</span></button>
+                        <!--<button id="autoOff"></button>-->
+                    </div>
+                    <div id="controlSound" class="flex flex25">
+                        <div class="title fullWidth">
+                            <h5>Mélodie</h5>
+                        </div>
+                        <button id="soundOn"></button>
+                        <!--<button id="soundOff"></button>-->
+                    </div>
                 </div>
             </div>
         </main>
+        <div id="iFrame">
+            <div class="life">
+                <span>Vie: 0 / 100</span>
+                <progress bar></progress>
+            </div>
+            <div class="ammo">
+                <span>Munitions: 0 / 100</span>
+                <progress bar></progress>
+            </div>
+            <img src="img/mario_pixel_art.png" alt="Mario">
+        </div>
     </body>
 </html>
