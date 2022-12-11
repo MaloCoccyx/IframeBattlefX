@@ -8,531 +8,743 @@
 ################################
 */
 
-/********/
-/* Main */
-/********/
+/***********/
+/* General */
+/***********/
 
 html{
     height: 100%;
     width: 100%;
-    background-image: url("https://images5.alphacoders.com/318/318370.jpg");
-    text-align: center;
-    color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 body{
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
     width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    font-family: 'New Super Mario Font U', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-image: url("https://images5.alphacoders.com/318/318370.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 main{
-    width: 80%;
-    height: 100%;
     display: flex;
+    width: 100%;
+    height: 100%;
     flex-direction: column;
-    flex-wrap: wrap;
-    align-content: stretch;
-    justify-content: space-around;
-    align-items: stretch;
+    justify-content: flex-start;
+    margin: 0px;
 }
+
+main > *{
+    padding-left: 10%;
+    margin-bottom: 10px;
+}
+
+#iFrame, #iFrame > *{
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6{
+    margin: 0px;
+}
+
+.flex{
+    display: flex;  
+}
+
 .fullWidth{
     width: 100%;
 }
 
-.fullHeight{
-    height: 100%;
+.threeQuarter{
+    width: 75%;
 }
+
 
 .halfWidth{
     width: 50%;
 }
 
-.flex{
-    display: flex;
-    text-align: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.wrap{
-    flex-wrap: wrap;
-}
-
-.noWrap{
-    flex-wrap: nowrap;
-}
-
-.flex5{
-    width: 5%;
-}
-
-.flex10{
-    width: 5%;
-}
-
-.flex25{
+.oneQuarter{
     width: 25%;
 }
 
-.flex30{
-    width: 30%;
-}
-
-.flex40{
-    width: 40%;
+.column{
+    flex-direction: column;
 }
 
 button{
-    text-align: center;
-    width: 50px;
-    height: 50px;
-    margin: 10px;
-    background-repeat: no-repeat;
-    background-size: 45px;
-    background-position: center;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-img.left, img.right{
     width: 40px;
     height: 40px;
+    cursor: pointer;    
+    background: transparent;
+    border: 0px;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position: center;
+    transition: 0.5s;
 }
 
-#iFrame{
+button:hover, button:active{
+    transition-duration: 1s;
+}
+/******************************/
+/* Titles & Infos about Robot */
+/******************************/
+
+#header{
+    padding-top: 20px;
+    max-height: 60px;
+    height: 100%;
+}
+
+#titleProject, #nameRobot, #titleLegend, #infos, #legendBox,
+#robotBox, #actionsBox, #controlModeTitle, #soundTitle{
+    background: rgba(0,0,0,0.9);
+    border: 1px solid white;
+    justify-content: space-around;
+    max-height: 50px;
+    align-self: safe center;
+    text-align: center;
+    padding: 10px;
+}
+
+#nameAndInfos, #robotAndLegend{
+    justify-content: space-between;
+}
+
+#nameRobot{
+    align-self: flex-start;
+}
+
+#infos, #legendBox{
+    max-height: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0px;
+    width: 40%;
+}
+
+#infos > p{
+    border: 1px solid white;
+    width: 40%;
+}
+
+p.life, p.lifeExtraShort{
+    background: linear-gradient(to right, rgb(255, 0, 0) 50%,transparent 50%);
+}
+
+p.ammo, p.ammoShort, p.ammoExtraShort{
+    background: linear-gradient(to right, rgb(255, 100, 0) 50%,transparent 50%);
+}
+
+p.ammoShort, p.ammoExtraShort, p.lifeExtraShort{
     display: none;
 }
 
+
 /*******************/
-/* Titles & States */
+/* Robot & Legends */
 /*******************/
 
-.title, #infosRobot, #legend{
-    border: 1px white solid;
-    background: rgba(0, 0, 0, 0.7);
-    font-weight: bolder;
-    display: flex;
-    align-items: center;
+#robot, #legendBox{    
+    max-height: 300px;
+    justify-content: space-around;
+    align-self: safe flex-start;
 }
 
-#infoRobot{
-    flex-direction: column;
+#robotBox{
+    border: 0px;
 }
 
-.title{
-    padding: 20px;
-    height: 50px;
-}
-
-.title > h1, .title > h2, #legend > h2{
+#robotBox, #robotBox > img{
     width: 100%;
-    text-shadow: 3px 3px black;
-}
-
-#life, #ammo{
-    width: 100%;
-    padding: 5px;
-    display: block;
-}
-
-#life > span, #ammo > span{
-    font-size: 14px;
-    width: 100%;
-    display: block;
-}
-
-/******************/
-/* Robot & Legend */
-/******************/
-
-#main{
-    max-height: 250px;
-    display: flex;
-    align-items: flex-start;
-    align-content: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    flex-direction: row;
-}
-
-#robot{
-    width: 40%;
-    max-width: 250px;
+    max-width: 300px;
     height: 100%;
-    flex-direction: row;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
+    max-height: 300px;
+    justify-self: safe center;
 }
 
-.border{
-    border: 2px solid;
+#titleLegend{
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
 }
 
-.state-online{
-    border-color: rgb(0, 206, 0);
-    box-shadow: 1px 1px rgb(0, 206, 0);
+#legend{
+    font-weight: bold;
+    text-align: left;
+    padding-left: 15px;
+    padding-top: 15px;
 }
 
-.state-takeDamage{
-    border-color: rgb(255, 153, 0);
-    box-shadow: 1px 1px rgb(255, 153, 0);
-}
+/*************************/
+/* Color for Robot State */
+/*************************/
 
-.state-fire{
-    border-color: rgb(192, 21, 152);
-    box-shadow: 1px 1px rgb(192, 21, 152);
-}
-
-.state-dead{
-    border-color: rgb(199, 0, 0);
-    box-shadow: 1px 1pxrgb(199, 0, 0) ;
-}
-
-#robot > img{
-    width: 100%;
-    height: 100%;
-}
-
-#infosLegend{
-    border: 1px solid #fff;
-    background: rgba(0,0,0,0.7);
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 0px;
-}
-
-#legend {
-    width: 100%;
-    height: 20px;
-    display: block;
-    position: relative;
-    top: -1px;
-    left: -1px;
-} 
-
-.colorLegend{
-    display: flex;
-    width: 100%;
-    align-content: flex-start;
-    justify-content: flex-start;
-    align-items: stretch;
-    flex-wrap: wrap;
-    flex-direction: column;
-    padding: 5px 0px;
-}
-
-.legendMargin{
-    margin: 10px;
-    justify-content: flex-start;
-}
-
-.legendMargin > span{
-    border: none;
-    box-shadow: none;
-}
-
-.square{
-    width: 25px;
-    height: 25px;
+span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
+    width: 30px;
+    height: 30px;
     display: inline-block;
-    margin-right: 10px;
 }
 
-span.state-online{
-    background-color: rgb(0, 206, 0);
+.isBorn{
+    box-shadow: 0px 0px 20px rgb(0, 255, 255);
+    border: 1px solid rgb(0, 255, 255);
+    background-color: rgb(0, 255, 255);
 }
 
-.state-takeDamage{
-    background-color: rgb(255, 153, 0);
+.isTakeDamage{
+    box-shadow: 0px 0px 20px rgb(138, 62, 8);
+    border: 1px solid rgb(138, 62, 8);
+    background-color: rgb(138, 62, 8);
 }
 
-.state-fire{
-    background-color: rgb(192, 21, 152);
+.isShooting{
+    box-shadow: 0px 0px 20px rgb(200, 255, 0);
+    border: 1px solid rgb(200, 255, 0);
+    background-color: rgb(200, 255, 0);
 }
 
-.state-dead{
-    background-color: rgb(199, 0, 0);
+.isDead{
+    box-shadow: 0px 0px 20px red;
+    border: 1px solid red;
+    background-color: red;
 }
 
-button#fire{
-    border: 1px solid white;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    font-weight: bolder;
-    width: 50%;
+.legend > p{
+    display: inline-block;
+    position: relative;
+    top: -10px;
 }
 
-button#fire:hover{
-    border-color: black;
-    background: white;
-    color: black;
-    transition: 1s;
+.legendShort{
+    display: none;
 }
 
-/*******************/
-/*     Actions     */
-/*******************/
-#actions{
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: flex-start;
-    align-items: stretch;
-    margin: 20px 0px;
+/*****************/
+/* Users Actions */
+/*****************/
+
+#usersActions{
+    justify-content: space-around;
+    margin-top: 30px;
 }
 
-/* Controller */
+/*****************/
+/*  Controller   */
+/*****************/
 
 #controller{
+    background: rgba(0,0,0,0.9);
+    border: 2px solid #fff;
+    border-radius: 100px;
     width: 200px;
     height: 200px;
-    border-radius: 100px;
-    background: green;
-    flex-wrap: wrap;
-    align-content: space-between;
-}
-
-.controllerTop{
     justify-content: space-between;
 }
 
-.controllerCenter{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin-top: -25px;
+#controllerTop, #controllerMiddle, #controllerBottom{
+    justify-content: space-between;
 }
 
-#controlWest> p{
-    margin-left: -50px;
+#controllerBottom{
+    justify-content: center;
 }
 
-#controlEast > p{
-    margin-left: 50px;
+/************************/
+/*  Controller Buttons  */
+/************************/
+/*  turnToRight  */
+button#turnToRight{
+    background-image: url("/img/controller/curved-arrow/curved-arrow-right-green-icon.svg");
 }
 
-.controllerBottom{   
+button#turnToRight:hover, button#turnToRight:active{
+    background-image: url("/img/controller/curved-arrow/curved-arrow-right-red-icon.svg");
+}
+
+/*  turnToLeft  */
+button#turnToLeft{
+    background-image: url("/img/controller/curved-arrow/curved-arrow-left-green-icon.svg");
+}
+
+button#turnToLeft:hover, button#turnToLeft:active{
+    background-image: url("/img/controller/curved-arrow/curved-arrow-left-red-icon.svg");
+}
+
+/*  moveToForward  */
+button#moveToForward{
+    background-image: url("/img/controller/black-arrow/black-top-arrow-icon.svg");
     position: relative;
-    bottom: 10px;
+    top: 5px;
 }
 
-/* Action Buttons */
-
-#actionsButtons{
-    align-items: flex-start;
+button#moveToForward:hover, button#moveToForward:active{
+    background-image: url("/img/controller/line-arrow/line-top-arrow-icon.svg");
 }
 
-/* Mode Auto/Manual */
+/*  moveToLeft  */
+button#moveToLeft{
+    background-image: url("/img/controller/black-arrow/black-left-arrow-icon.svg");
+    position: relative;
+    left: 5px;
+}
+
+button#moveToLeft:hover, button#moveToLeft:active{
+    background-image: url("/img/controller/line-arrow/line-left-arrow-icon.svg");
+}
+
+/*  moveToRight  */
+button#moveToRight{
+    background-image: url("/img/controller/black-arrow/black-right-arrow-icon.svg");
+    position: relative;
+    right: 5px;
+}
+
+button#moveToRight:hover, button#moveToRight:active{
+    background-image: url("/img/controller/line-arrow/line-right-arrow-icon.svg");
+}
+
+/*  moveToBackward  */
+button#moveToBackward{
+    background-image: url("/img/controller/black-arrow/black-bottom-arrow-icon.svg");
+    position: relative;
+    bottom: 5px;
+}
+
+button#moveToBackward:hover, button#moveToBackward:active{
+    background-image: url("/img/controller/line-arrow/line-bottom-arrow-icon.svg");
+}
+
+/*********************/
+/*  Actions Buttons  */
+/*********************/
+
+#actions{
+    max-height: 100px;
+}
+
+/* Actions Title */
+#soundTitle, #controlModeTitle{
+    border-bottom: 0px;
+    min-width: 90px;
+}
+
+#controlModeTitle{
+    height: 19px;
+    border-right: 0px;
+}
+
+/* Actions Box */
+#actionsBox{
+    align-items: center;
+    padding: 10px 5px;
+}
 
 #controlMode, #controlSound{
-    background: rgba(0,0,0,0.7);
-    border: 1px solid white;
-    padding: 0px;
-    display: flex;
-    flex-direction: column;
+    min-width: 110px;
 }
 
-#controlMode > .title, #controlSound > .title{
-    padding: 0px 2px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    left: -1px;
-    top: -1px;
-    width: 98%;
+/*  modeAutoOn  */
+button#modeAutoOn{
+    background-image: url("/img/turn-on-icon.svg");
 }
 
-#controlMode > button#soundOn, #controlMode > button#fire{
+button#modeAutoOn:hover, button#modeAutoOn:active{
+    background-image: url("/img/turn-off-hover-icon.svg");
+}
+
+/*  modeAutoOff  */
+button#modeAutoOff{
+    background-image: url("/img/turn-off-icon.svg");
+}
+
+button#modeAutoOff:hover, button#modeAutoOff:active{
+    background-image: url("/img/turn-on-hover-icon.svg");
+}
+
+/* souindOn & sound Off */
+button#soundOn, button#soundOff{
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 40px;
+    width: 40px;
+    background-size: 37px;
+    background-color: white;
+    box-shadow: 0px 0px 2px white;
+}
+
+/*  soundOn & soundOff (hover & active) */
+button#soundOn, button#soundOff:hover, button#soundOff:active{
+    background-image: url("/img/sound-on-icon.svg");
+    background-color: white;
+    box-shadow: white;
+    border-color: black;
+}
+
+
+/*  soundOff & soundOn (hover & active) */
+button#soundOff, button#soundOn:hover, button#soundOn:active{
+    background-image: url("/img/sound-off-icon.svg");
+    background-color: black;
+    box-shadow: black;
+    border-color: white;
+}
+
+/*  shooting  */
+button#shooting{
+    border: 1px solid black;
+    background: white;
+    color: black;
+    font-weight: bold;
+    width: 100px;
+    box-shadow: 0px 0px 2px white;
+}
+button#shooting:hover, button#shooting:active{
+    border-color: white;
+    background: black;
+    color: white;
+}
+
+button.disabled{
     display: none;
 }
 
-button#autoOn{
-    background-image: url("./img/turn-on-icon.svg");
+@media (max-height: 420px),
+        (max-width: 460px){
+            body > *{
+                display: none;
+            }
+        
+            html, body {
+                display: flex;
+                background: none;
+                width: 100%;
+                height: 100%;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: nowrap;
+                margin: 0px;
+                padding: 0px;
+                align-content: center;
+                flex-direction: column;
+            }
+        
+            body > #iFrame{
+                display: flex;
+                width: 100%;
+                height: 100%;
+                justify-content: flex-start;
+                flex-direction: column;
+                align-items: center;
+            }
+        
+            main{
+                width: 0;
+                height: 0;
+            }
+            
+            #iFrame > img{
+                width: 100%;
+                height: 90%;
+                display: flex;
+            }
+
+            #iFrameInfos{
+                width: 100%;
+                height: 10%;
+            }
+        
+            #iFrame > div, #iFrame > div > progress{
+                display: flex;
+                width: 75%;
+            }
+            #iFrame > div > p.ammo, #iFrame > div > p.life{
+                display: inline-block;
+                width: 50%;
+                height: 20px;
+                font-size: 12px;
+                text-align: center;
+                color: white;
+                text-shadow: 0px 0px 10px red;
+                line-height: 20px;
+                border: 1px solid red;
+                border-left: 0px;
+            }
+
+            #iframe > div > p.ammo{
+                text-shadow: 0px 0px 10px rgb(255, 100, 0);
+                border-color: rgb(255, 100, 0);
+            }
 }
 
-button#autoOn:hover{
-    transition: 1s;
-    background-image: url("./img/turn-on-hover-icon.svg");
-}
+@media (max-height: 570px)
+        and (min-height: 420px){
 
-button#autoOff{
-    background-image: url("./img/turn-off-icon.svg");
-}
-
-button#autoOff:hover{
-    transition: 1s;
-    background-image: url("./img/turn-off-hover-icon.svg");
-}
-
-/* Melody On/Off */
-
-#controlSound > .title{
-    padding: 0px 2px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    left: -1px;
-    top: -1px;
-    width: 97%;
-}
-
-button#soundOff, button#soundOn{
-    background: white center no-repeat;
-    background-size: 40px;
-    border-radius: 25px;
-    border: 1px solid black;
-}
-
-button#soundOn{
-    background-image: url("./img/sound-on-icon.svg");
-}
-
-button#soundOn:hover{
-    transition: 1s;
-    background-image: url("./img/volume-mute-icon.svg");
-}
-
-button#soundOff{
-    background: white center no-repeat;
-    background-image: url("./img/volume-mute-icon.svg");
-    background-size: 40px;
-    border-radius: 25px;
-}
-
-button#soundOff:hover{
-    transition: 1s;
-    background-image: url("./img/sound-on-icon.svg");
-}
-
-
-@media (max-width: 500px), (max-height: 600px) {
-    *, .flex{
+    /* Titles */
+    #header{
         display: none;
     }
 
-    html, body {
-        display: flex;
-        background: none;
-        width: 100%;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: nowrap;
-        margin: 0px;
-        padding: 0px;
-        align-content: center;
-        flex-direction: column;
+    #nameAndInfos{
+        margin-top: 10px;
     }
 
-    body > #iFrame{
-        display: flex;
-        width: 100%;
-        height: 100%;
-        justify-content: flex-start;
-        flex-direction: column;
-        align-items: center;
+    /* Controller */
+    #controller{
+        width: 125px;
+        height: 125px;
     }
 
-    main{
-        width: 0;
-        height: 0;
-    }
-    
-    #iframe > img{
-        width: 100%;
-        height: 90%;
-        display: flex;
-    }
-
-    #iframe > div, #iframe > div > progress{
-        display: flex;
-        width: 75%;
-    }
-    #iframe > div > span{
-        color: black;
-        display: flex;
-        width: 40%;
-        font-size: 12px;
-    }
-}
-@media (max-width: 600px) {    
-    .legendMargin > span{
-        font-size: 8px;
-    }
-}
-
-@media (max-width: 900px){
-    .legendMargin > span{
-        font-size: 10px;
-    }
-}
-
-@media (max-width: 1050px){
-    #title{
-        display: none;
-    }
-
-    .legendMargin > span{
-        font-size: 12px;
-    }
-
-    .square{
-        width: 10px;
-        height: 10px;;
-    }
-
-    #controlMode{
-        width: 25%;
-        display: flex;
-        flex-direction: column-reverse;
-    }
-
-    #controlMode > .title, #controlSound{
-        display: none;
-    }
-
-    button#fire{
-        display: none;
-    }
-
-    #controlMode > button, #controlMode > button#soundOn, #controlMode > button#fire{
+    button#turnToLeft, button#turnToRight, button#moveToForward, 
+    button#moveToLeft, button#moveToRight, button#moveToBackward{
         width: 30px;
         height: 30px;
-        display: inline-block;
-        background-size: 25px;
-    }
-
-    button#autoOn, button#autoOff{
         background-size: 30px;
     }
-    
-    button#fire{
-        border: 1px solid black;
-        background: white;
-        color: black;
+    p.ammo{
+        display: none;
     }
 
-    button#fire:hover{
-        border-color: white;
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        transition: 1s;
+    p.ammoShort{
+        display: block;
     }
 
-    button#fire > span{
-        position: relative;
-        left: -7px;
+    /* Robot */
+    #robotBox{
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Legend */
+    span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
+        width: 15px;
+        height: 15px;
+    }
+
+    #legend{
+        padding-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+
+    .legend{
+        height: 25px;
+    }
+
+    .legend > p{
+        font-size: 12px;
+        top: -4px;
+    }
+
+}
+
+@media (max-height: 670px) and (min-height: 570px){
+
+    /* Titles */
+    #header{
+        display: none;
+    }
+
+    #nameAndInfos{
+        margin-top: 10px;
+    }
+
+    /* Controller */
+    #controller{
+        width: 125px;
+        height: 125px;
+    }
+
+    button#turnToLeft, button#turnToRight, button#moveToForward, 
+    button#moveToLeft, button#moveToRight, button#moveToBackward{
+        width: 30px;
+        height: 30px;
+        background-size: 30px;
+    }
+}
+
+@media (max-height: 720px)
+        and (min-height: 670px){
+
+    /* Controller */
+    #controller{
+        width: 150px;
+        height: 150px;
+    }
+
+    button#turnToLeft, button#turnToRight, button#moveToForward, 
+    button#moveToLeft, button#moveToRight, button#moveToBackward{
+        width: 30px;
+        height: 30px;
+        background-size: 30px;
+    }
+}
+
+
+
+@media (max-width: 750px)
+        and (min-width: 440px){
+
+    /* Titles */
+    #header{
+        display: none;
+    }
+
+    #nameAndInfos{
+        margin-top: 10px;
+    }
+
+    #infos > p{
+        font-size: 12px;
+        height: 15px;
+    }
+
+    p.ammo, p.ammoShort, p.life{
+        display: none;
+    }
+
+    p.lifeExtraShort, p.ammoExtraShort{
+        display: block;
+    }
+
+    /* Robot */
+    #robotBox{
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Legend */
+    span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
+        width: 15px;
+        height: 15px;
+    }
+
+    #legend{
+        padding-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+
+    .legend, .legendShort{
+        height: 25px;
+    }
+
+    .legend > p, .legendShort > p{
+        font-size: 10px;
+        top: -4px;
+    }
+
+    .legendLarge{
+        display: none;
+    }
+
+    .legendShort{
+        display: block;
+    }
+
+    /* Controller */
+    #controller{
+        width: 125px;
+        height: 125px;
+    }
+
+    button#turnToLeft, button#turnToRight, button#moveToForward, 
+    button#moveToLeft, button#moveToRight, button#moveToBackward{
+        width: 30px;
+        height: 30px;
+        background-size: 30px;
+    }
+
+    /* Users Actions */
+    #actionsTitle{
+        display: none;
+    }
+
+    #controlMode, #controlSound{
+        min-width: 50px;
+    }
+}
+
+@media (max-width: 850px)
+        and (min-width: 750px){
+
+    /* Titles */
+    #header{
+        display: none;
+    }
+
+    #nameAndInfos{
+        margin-top: 10px;
+    }
+
+    #infos > p{
+        font-size: 15px;
+        height: 20px;
+    }
+
+    p.ammo{
+        display: none;
+    }
+
+    p.ammoShort{
+        display: block;
+    }
+
+    /* Robot */
+    #robotBox{
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Legend */
+    span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
+        width: 15px;
+        height: 15px;
+    }
+
+    #legend{
+        padding-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+
+    .legend{
+        height: 25px;
+    }
+
+    .legend > p{
+        font-size: 12px;
+        top: -4px;
+    }
+
+    /* Controller */
+    #controller{
+        width: 125px;
+        height: 125px;
+    }
+
+    button#turnToLeft, button#turnToRight, button#moveToForward, 
+    button#moveToLeft, button#moveToRight, button#moveToBackward{
+        width: 30px;
+        height: 30px;
+        background-size: 30px;
+    }
+
+    /* Users Actions */
+    #actionsTitle{
+        display: none;
+    }
+
+    #controlMode, #controlSound{
+        min-width: 50px;
     }
 }

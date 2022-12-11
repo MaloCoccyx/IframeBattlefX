@@ -1,119 +1,172 @@
+<!DOCTYPE html>
 <html lang="fr">
     <head>
-        <title>IframeBattlefX - Nom du robot - Iframe</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="js/script.js">
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="IframeBattlefx est un site permettant à un utilisateur de contrôler un robot à distance dans une arène, le robot ayant un thème choisi par l'utilisateur">
+        <link href="https://fonts.cdnfonts.com/css/new-super-mario-font-u" rel="stylesheet">
+        <link rel="icon" href="img/favicon.ico">
+        <title>IframeBattlefX - MarioBot</title>
     </head>
     <body>
         <main>
-            <div id="title" class="flex fullWidth">
-                <div class="title fullWidth">
-                    <h1>IframeBattlefX - Supervision</h1>
+            <!-- Title of Project -->
+            <div id="header" class="threeQuarter">
+                <div id="titleProject">
+                    <h1>IframeBattlefX</h1>
                 </div>
             </div>
+
+
+            <!-- Name and Infos about the Robot -->
+            <div id="nameAndInfos" class="flex threeQuarter">
+                <!-- Name of Robot-->
+                <div id="nameRobot" class="flex halfWidth">
+                    <h2>MarioBot</h2>
+                </div>
+
+                <!-- Infos about the Robot -->
+                <div id="infos" class="flex">
+                    <!-- Life of the Robot -->
+                    <p class="life">Vie : 100 / 100</p>
+                    <p class="lifeExtraShort">V: 100/100</p>
+                    <!-- Ammo of the Robot -->
+                    <p class="ammo">Munitions : 100 / 100</p>
+                    <p class="ammoShort">Mun: 100/100</p>
+                    <p class="ammoExtraShort">M: 100/100</p>
+                </div>
+            </div>
+
+            <!-- Display Robot and Legend for Robot States -->
+            <div id="robotAndLegend" class="flex threeQuarter">
+                <!-- Display Robot -->
+                <div id="robot" class="flex halfWidth">
+                    <div id="robotBox" class="flex isBorn">
+                        <!-- Image for Display Robot -->
+                        <img src="img/mario/robot-forward.svg" alt="MarioBot is forward">
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div id="legendBox" class="flex fullWidth">
+                    <!-- Title -->
+                    <div id="titleLegend" class="flex fullWidth">
+                        <h3>Le robot :</h3>
+                    </div>
+                    
+                    <!-- Contain Legend for Robot States -->
+                    <div id="legend" class="flex fullWidth column">
+
+                        <!-- Robot is Born -->
+                        <div class="legend">
+                            <span class="isBorn"></span>
+                            <p>Est Né</p>
+                        </div>
+
+                        <!-- Robot is Take Damage -->
+                        <div class="legend legendLarge">
+                            <span class="isTakeDamage"></span>
+                            <p>Perds des Points de vie</p>
+                        </div>
+                        <div class="legend legendShort">
+                            <span class="isTakeDamage"></span>
+                            <p>Perds des PVs</p>
+                        </div>
+
+                        <!-- Robot is Shooting -->
+                        <div class="legend">
+                            <span class="isShooting"></span>
+                            <p>Tir</p>
+                        </div>
+
+                        <!-- Robot is Dead -->
+                        <div class="legend">
+                            <span class="isDead"></span>
+                            <p>Est Mort</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions users can do -->
+            <div id="usersActions" class="flex threeQuarter">
+                <!-- Controller to Move and Turn Robot -->
+                <div id="controller" class="flex column">
+                    <!-- Actions "Turn" & "Move Forward" -->
+                    <div id="controllerTop" class="flex fullWidth">
+                        <div class="turnToRight">
+                            <button id="turnToRight"></button>
+                        </div>
+                        <div class="moveToForward">
+                            <button id="moveToForward"></button>
+                        </div>
+                        <div class="turnToLeft">
+                            <button id="turnToLeft"></button>
+                        </div>
+                    </div>
+
+                    <!-- Actions "Move Left" & "Move Right" -->
+                    <div id="controllerMiddle" class="flex fullWidth">
+                        <div class="moveToLeft">
+                            <button id="moveToLeft"></button>
+                        </div>
+                        <div class="moveToRight">
+                            <button id="moveToRight"></button>
+                        </div>
+                    </div>
+                    
+                    <!-- Action "Move Backward" -->
+                    <div id="controllerBottom" class="flex fullWidth">
+                        <div class="moveToBackward">
+                            <button id="moveToBackward"></button>
+                        </div>
+                    </div>
+                </div>
             
-            <div id="subTitle" class="flex fullWidth">
-                    <div class="title halfWidth">
-                        <h2 id="robotName">Nom du robot</h2>
-                    </div>
-                <div id="infosRobot" class="flex flex30 wrap">
-                    <div id="life" class="flex">
-                        <span class="life">
-                            <strong>Vie :</strong> 50/100
-                            <progress class="fullWidth" bar></progress>
-                        </span>
-                    </div>                
-                    <div id="ammo" class="flex wrap">
-                        <span class="ammo">
-                            <strong>Munitions :</strong> 50/100
-                            <progress class="fullWidth" bar></progress>
-                        </span>
-                    </div>  
-                </div>
-            </div>
-            <div id="main" class="fullWidth">
-                <div class="flex flex5"></div> 
-                <div id="robot" class="flex border state-online">
-                    <img src="img/mario_pixel_art.png" alt="Mario">
-                </div>
-                <div class="flex flex5"></div> 
-                <div id="infos" class="flex flex25">
-                    <div id="infosLegend" class="flex">
-                        <div id="legend">
-                            <h2">Légende</h2>
+                <!-- Users Actions -->
+                <div id="actions" class="flex column">
+                    <!-- Actions Titles -->
+                    <div id="actionsTitle" class="flex">
+                        <div id="controlModeTitle">
+                            <h4>Mode Auto</h4>
                         </div>
-                        <div class="colorLegend">
-                            <div class="flex fullWidth legendMargin">
-                                <span class="square state-takeDamage"></span><span>Perte de PVs</span>
-                            </div>
-                            <div class="flex fullWidth legendMargin">
-                                <span class="square state-fire"></span><span>Tir</span>
-                            </div>
-                            <div class="flex fullWidth legendMargin">
-                                <span class="square state-dead"></span><span>Mort</span>
-                            </div>
-                            <div class="flex fullWidth legendMargin">
-                                <span class="square state-online"></span><span>Connecté</span>
-                            </div>
+                        <div id="soundTitle">
+                            <h4>Mélodie</h4>
                         </div>
                     </div>
-                    <button id="fire">
-                        <span>Tirer</span>
-                    </button>
-                </div>
-                <div class="flex flex5"></div> 
-            </div>
-            
-            <div id="actions" class="flex fullWidth">
-                <div id="movements" class="flex halfWidth">
-                    <div id="controller" class="flex fullWidth">
-                        <div class="flex controllerTop fullWidth">               
-                            <img src="img/curved-arrow-right-ouline-icon.svg" alt="Move right" class="right">
-                            <span>N</span>
-                            <img src="img/curved-arrow-left-ouline-icon.svg" alt="Move left" class="left">
+                    <!-- Actions Mode Auto (On/Off), Sound (On/Off) & Shooting -->
+                    <div id="actionsBox" class="flex">
+                        <!-- Buttons to enable / disable the Automatique Control of Robot -->
+                        <div id="controlMode">
+                            <button id="modeAutoOn"></button>
+                            <button id="modeAutoOff" class="disabled"></button>
                         </div>
-                        <div class="flex controllerCenter fullWidth">
-                            <div id="controlWest" class="flex halfWidth"><p>O</p></div>  
-                            <div id="controlEast" class="flex halfWidth"><p>E</p></div>
+
+                        <!-- Buttons to mute / demute melody -->
+                        <div id="controlSound">
+                            <button id="soundOn"></button>
+                            <button id="soundOff" class="disabled"></button>
                         </div>
-                        <div class="flex controllerBottom fullWidth">
-                            <span>S</span>
+
+                        <!-- Button to Shoot with Robot -->
+                        <div id="shooting">
+                            <button id="shooting">Tirer</button>
                         </div>
-                    </div>
-                </div>
-                <div id="actionsButtons" class="flex halfWidth">
-                    <div id="controlMode" class="flex halfWidth">
-                        <div class="title fullWidth">
-                            <h5>Mode automatique</h5>
-                        </div>
-                        <button id="autoOn"></button>
-                        <button id="soundOn"></button>
-                        <button id="fire"><span>Tirer</span></button>
-                        <!--<button id="autoOff"></button>-->
-                    </div>
-                    <div id="controlSound" class="flex flex25">
-                        <div class="title fullWidth">
-                            <h5>Mélodie</h5>
-                        </div>
-                        <button id="soundOn"></button>
-                        <!--<button id="soundOff"></button>-->
                     </div>
                 </div>
             </div>
         </main>
+
+        <!-- Mode Iframe -->
         <div id="iFrame">
-            <div class="life">
-                <span>Vie: 0 / 100</span>
-                <progress bar></progress>
+            <div class="iFrameInfos">
+                <!-- Life of the Robot -->
+                <p class="life">V: 100/100</p>
+                <!-- Ammo of the Robot -->
+                <p class="ammo">M: 100/100</p>
             </div>
-            <div class="ammo">
-                <span>Munitions: 0 / 100</span>
-                <progress bar></progress>
-            </div>
-            <img src="img/mario_pixel_art.png" alt="Mario">
+            <img src="img/mario/robot-backward.svg" alt="MarioBot is Forward">
         </div>
     </body>
 </html>
