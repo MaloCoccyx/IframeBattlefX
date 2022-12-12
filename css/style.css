@@ -12,6 +12,15 @@
 /* General */
 /***********/
 
+:root{
+    --bg-box: rgba(0,0,0,0.9);
+    --is-born: rgb(0, 255, 255);
+    --is-take-damage: rgb(138, 62, 8);
+    --is-shooting: rgb(200, 255, 0);
+    --is-dead: red;
+    --ammo: rgb(255, 100, 0);
+}
+
 html{
     height: 100%;
     width: 100%;
@@ -107,7 +116,7 @@ button:hover, button:active{
 
 #titleProject, #nameRobot, #titleLegend, #infos, #legendBox,
 #robotBox, #actionsBox, #controlModeTitle, #soundTitle{
-    background: rgba(0,0,0,0.9);
+    background: var(--bg-box);
     border: 1px solid white;
     justify-content: space-around;
     max-height: 50px;
@@ -138,11 +147,11 @@ button:hover, button:active{
 }
 
 p.life, p.lifeExtraShort{
-    background: linear-gradient(to right, rgb(255, 0, 0) 50%,transparent 50%);
+    background: linear-gradient(to right, var(--is-dead) 50%,transparent 50%);
 }
 
 p.ammo, p.ammoShort, p.ammoExtraShort{
-    background: linear-gradient(to right, rgb(255, 100, 0) 50%,transparent 50%);
+    background: linear-gradient(to right, var(--ammo) 50%,transparent 50%);
 }
 
 p.ammoShort, p.ammoExtraShort, p.lifeExtraShort{
@@ -206,30 +215,30 @@ p.ammoShort, p.ammoExtraShort, p.lifeExtraShort{
 /*************************/
 
 .isBorn, .isAlive{
-    box-shadow: 0px 0px 20px rgb(0, 255, 255);
-    border: 1px solid rgb(0, 255, 255);
-    background-color: rgb(0, 255, 255);
+    box-shadow: 0px 0px 20px var(--is-born);
+    border: 1px solid var(--is-born);
+    background-color: var(--is-born);
     animation: isBorn 1s linear 0s 1 normal none;
 }
 
 .isTakeDamage{
-    box-shadow: 0px 0px 20px rgb(138, 62, 8);
-    border: 1px solid rgb(138, 62, 8);
-    background-color: rgb(138, 62, 8);
+    box-shadow: 0px 0px 20px var(--is-take-damage);
+    border: 1px solid var(--is-take-damage);
+    background-color: var(--is-take-damage);
     animation: isTakeDamage 1s linear 0s 1 normal none;
 }
 
 .isShooting{
-    box-shadow: 0px 0px 20px rgb(200, 255, 0);
-    border: 1px solid rgb(200, 255, 0);
-    background-color: rgb(200, 255, 0);
+    box-shadow: 0px 0px 20px var(--is-shooting);
+    border: 1px solid var(--is-shooting);
+    background-color: var(--is-shooting);
     animation: isShooting 1s linear 0s 1 normal none;
 }
 
 .isDead{
-    box-shadow: 0px 0px 20px red;
-    border: 1px solid red;
-    background-color: red;
+    box-shadow: 0px 0px 20px var(--is-dead);
+    border: 1px solid var(--is-dead);
+    background-color: var(--is-dead);
     animation: isDead 1s linear 0s 1 normal none;
 }
 
@@ -241,19 +250,19 @@ span.isBorn, span.isTakeDamage, span.isShooting, span.isDead, span.isAlive{
 }
 
 #robotBox.isBorn, #robotBox.isAlive{
-    border-color: rgb(0, 255, 255);
+    border-color: var(--is-born);
 }
 
 #robotBox.isTakeDamage{
-    border-color: rgb(138, 62, 8);
+    border-color: var(--is-take-damage);
 }
 
 #robotBox.isDead{
-    border-color: red;
+    border-color: var(--is-dead);
 }
 
 #robotBox.isShooting{
-    border-color: rgb(200, 255, 0);
+    border-color: var(--is-shooting);
 }
 
 .legend > p{
@@ -280,7 +289,7 @@ span.isBorn, span.isTakeDamage, span.isShooting, span.isDead, span.isAlive{
 /*****************/
 
 #controller{
-    background: rgba(0,0,0,0.9);
+    background: var(--bg-box);
     border: 2px solid #fff;
     border-radius: 100px;
     width: 200px;
@@ -528,8 +537,8 @@ button.enabled{
     }
 
     #iframe > div > p.ammo{
-        text-shadow: 0px 0px 10px rgb(255, 100, 0);
-        border-color: rgb(255, 100, 0);
+        text-shadow: 0px 0px 10px var(--ammo);
+        border-color: var(--ammo);
     }
 }
 
