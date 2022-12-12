@@ -172,6 +172,22 @@ p.ammoShort, p.ammoExtraShort, p.lifeExtraShort{
     border: 2px solid;
 }
 
+#robotBox.isMoveToForward{
+    animation: isMoveToForward 1s ease 0s 1 normal forwards;
+}
+
+#robotBox.isMoveToBackward{
+    animation: isMoveToBackward 1s ease 0s 1 normal forwards;
+}
+
+#robotBox.isMoveToLeft{
+    animation: isMoveToLeft 1s ease 0s 1 normal forwards;
+}
+
+#robotBox.isMoveToRight{
+    animation: isMoveToRight 1s ease 0s 1 normal forwards;
+}
+
 #titleLegend{
     border-left: 0px;
     border-right: 0px;
@@ -916,3 +932,54 @@ button.enabled{
 /*********************************/
 /*  Animations by where Robot go */
 /*********************************/
+/* Move To Backward */
+@keyframes isMoveToBackward {
+	0% {
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Move To Right */
+@keyframes isMoveToRight {
+	0% {
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Move To Left */
+@keyframes isMoveToLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Move To Forward */
+@keyframes isMoveToForward {
+	0% {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

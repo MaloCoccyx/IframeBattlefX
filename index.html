@@ -43,7 +43,7 @@
             <div id="robotAndLegend" class="flex threeQuarter">
                 <!-- Display Robot -->
                 <div id="robot" class="flex halfWidth">
-                    <div id="robotBox" class="flex isBorn">
+                    <div id="robotBox" class="flex isBorn isMoveToForward">
                         <img id="displayRobot" src="img/mario/robot-forward.svg" alt="MarioBot is forward" class="forward">
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                             <button id="turnToRight" onclick="turnToRight();"></button>
                         </div>
                         <div class="moveToForward">
-                            <button id="moveToForward" onclick="moveToForward();"></button>
+                            <button id="moveToForward" onclick="isMoveTo('Forward');"></button>
                         </div>
                         <div class="turnToLeft">
                             <button id="turnToLeft" onclick="turnToLeft();"></button>
@@ -99,16 +99,16 @@
 
                     <div id="controllerMiddle" class="flex fullWidth">
                         <div class="moveToLeft">
-                            <button id="moveToLeft" onclick="moveToLeft();"></button>
+                            <button id="moveToLeft" onclick="isMoveTo('Left');"></button>
                         </div>
                         <div class="moveToRight">
-                            <button id="moveToRight" onclick="moveToRight();"></button>
+                            <button id="moveToRight" onclick="isMoveTo('Right');"></button>
                         </div>
                     </div>
 
                     <div id="controllerBottom" class="flex fullWidth">
                         <div class="moveToBackward">
-                            <button id="moveToBackward" onclick="moveToBackward();"></button>
+                            <button id="moveToBackward" onclick="isMoveTo('Backward');"></button>
                         </div>
                     </div>
                 </div>

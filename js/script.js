@@ -8,10 +8,18 @@
 ################################
 */
 
+/*
+###########################
+## Change Robot Rotation ##
+###########################
 /* Change Robot Rotation onClick turnToLeft Button */
 function turnToLeft() {
+
+    // Initialize Variables
     const IMG = document.getElementById("displayRobot");
     const IMGIFRAME = document.getElementById("iFrameDisplayRobot");
+
+    // Treatment
     if(IMG.className == "forward" && IMGIFRAME.className == "forward"){
         IMG.className = "left";
         IMG.src = "img/mario/robot-left.svg";
@@ -45,8 +53,12 @@ function turnToLeft() {
 
 /* Change Robot Rotation onClick turnToRight Button */
 function turnToRight() {
+
+    // Initialize Variables
     const IMG = document.getElementById("displayRobot");
     const IMGIFRAME = document.getElementById("iFrameDisplayRobot");
+
+    // Treatment
     if(IMG.className == "forward" && IMGIFRAME.className == "forward"){
         IMG.className = "right";
         IMG.src = "img/mario/robot-right.svg";
@@ -78,10 +90,19 @@ function turnToRight() {
     }
 } 
 
+
+/*
+######################################
+## Set Button to Enabled / Disabled ##
+######################################
 /* Enable / Disable buttons "modeAuto" */
 function modeAutoOnOff(){
+
+    // Initialize Variables
     const BUTTONON = document.getElementById("modeAutoOn");
     const BUTTONOFF = document.getElementById("modeAutoOff");
+
+    // Treatment
     if(BUTTONOFF.className == "disabled" && BUTTONON.className == "enabled"){
         BUTTONOFF.className = "enabled";
         BUTTONON.className = "disabled";
@@ -95,8 +116,12 @@ function modeAutoOnOff(){
 
 /* Enable / Disable buttons "sound" */
 function soundOnOff(){
+
+    // Initialize Variables
     const SOUNDON = document.getElementById("soundOn");
     const SOUNDOFF = document.getElementById("soundOff");
+
+    // Treatment
     if(SOUNDOFF.className == "disabled" && SOUNDON.className == "enabled"){
         SOUNDOFF.className = "enabled";
         SOUNDON.className = "disabled";
@@ -108,15 +133,47 @@ function soundOnOff(){
     }
 }
 
+/*
+########################
+## Change Robot State ##
+########################
 /* Enable / Disable buttons "sound" */
 function isShooting(){
+
+    // Initialize Variables
     const ROBOTBOX = document.getElementById("robotBox");
+
+    // Treatment
     if(ROBOTBOX.className != "flex isShooting"){
         ROBOTBOX.className = "flex isShooting";
         setTimeout(() => {
                 ROBOTBOX.className = "flex isAlive";
             }, 1000
-        )
+        );
         return;
     }
+}
+
+
+
+/*
+###################
+## Robot MoveToX ##
+###################
+/* Robot Move To Parameter (Forward, Left, Right, Backward)*/
+function isMoveTo(Parameter){
+
+    // Initialize Variables
+    const MOVETO = document.getElementById("robotBox");
+
+    // Treatment
+    MOVETO.classList.remove("isMoveToForward");
+    MOVETO.classList.remove("isMoveToLeft");
+    MOVETO.classList.remove("isMoveToRight");
+    MOVETO.classList.remove("isMoveToBackward");
+    setTimeout(() => {
+            MOVETO.classList.add("isMoveTo" + Parameter);
+        }, 1
+    );
+    return;
 }
