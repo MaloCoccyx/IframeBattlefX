@@ -160,16 +160,16 @@ p.ammoShort, p.ammoExtraShort, p.lifeExtraShort{
     align-self: safe flex-start;
 }
 
-#robotBox{
-    border: 0px;
-}
-
 #robotBox, #robotBox > img{
     width: 100%;
-    max-width: 300px;
     height: 100%;
+    max-width: 300px;
     max-height: 300px;
     justify-self: safe center;
+}
+
+#robotBox{
+    border: 2px solid;
 }
 
 #titleLegend{
@@ -189,7 +189,7 @@ p.ammoShort, p.ammoExtraShort, p.lifeExtraShort{
 /* Color for Robot State */
 /*************************/
 
-.isBorn{
+.isBorn, .isAlive{
     box-shadow: 0px 0px 20px rgb(0, 255, 255);
     border: 1px solid rgb(0, 255, 255);
     background-color: rgb(0, 255, 255);
@@ -207,7 +207,7 @@ p.ammoShort, p.ammoExtraShort, p.lifeExtraShort{
     box-shadow: 0px 0px 20px rgb(200, 255, 0);
     border: 1px solid rgb(200, 255, 0);
     background-color: rgb(200, 255, 0);
-    animation: isShooting 2s linear 0s 1 normal none;
+    animation: isShooting 1s linear 0s 1 normal none;
 }
 
 .isDead{
@@ -217,11 +217,27 @@ p.ammoShort, p.ammoExtraShort, p.lifeExtraShort{
     animation: isDead 1s linear 0s 1 normal none;
 }
 
-span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
+span.isBorn, span.isTakeDamage, span.isShooting, span.isDead, span.isAlive{
     width: 30px;
     height: 30px;
     display: inline-block;
     animation-iteration-count: infinite;
+}
+
+#robotBox.isBorn, #robotBox.isAlive{
+    border-color: rgb(0, 255, 255);
+}
+
+#robotBox.isTakeDamage{
+    border-color: rgb(138, 62, 8);
+}
+
+#robotBox.isDead{
+    border-color: red;
+}
+
+#robotBox.isShooting{
+    border-color: rgb(200, 255, 0);
 }
 
 .legend > p{
@@ -269,64 +285,64 @@ span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
 /************************/
 /*  turnToRight  */
 button#turnToRight{
-    background-image: url("/img/controller/curved-arrow/curved-arrow-right-green-icon.svg");
+    background-image: url("../img/controller/curved-arrow/curved-arrow-right-green-icon.svg");
 }
 
 button#turnToRight:hover, button#turnToRight:active{
-    background-image: url("/img/controller/curved-arrow/curved-arrow-right-red-icon.svg");
+    background-image: url("../img/controller/curved-arrow/curved-arrow-right-red-icon.svg");
 }
 
 /*  turnToLeft  */
 button#turnToLeft{
-    background-image: url("/img/controller/curved-arrow/curved-arrow-left-green-icon.svg");
+    background-image: url("../img/controller/curved-arrow/curved-arrow-left-green-icon.svg");
 }
 
 button#turnToLeft:hover, button#turnToLeft:active{
-    background-image: url("/img/controller/curved-arrow/curved-arrow-left-red-icon.svg");
+    background-image: url("../img/controller/curved-arrow/curved-arrow-left-red-icon.svg");
 }
 
 /*  moveToForward  */
 button#moveToForward{
-    background-image: url("/img/controller/black-arrow/black-top-arrow-icon.svg");
+    background-image: url("../img/controller/black-arrow/black-top-arrow-icon.svg");
     position: relative;
     top: 5px;
 }
 
 button#moveToForward:hover, button#moveToForward:active{
-    background-image: url("/img/controller/line-arrow/line-top-arrow-icon.svg");
+    background-image: url("../img/controller/line-arrow/line-top-arrow-icon.svg");
 }
 
 /*  moveToLeft  */
 button#moveToLeft{
-    background-image: url("/img/controller/black-arrow/black-left-arrow-icon.svg");
+    background-image: url("../img/controller/black-arrow/black-left-arrow-icon.svg");
     position: relative;
     left: 5px;
 }
 
 button#moveToLeft:hover, button#moveToLeft:active{
-    background-image: url("/img/controller/line-arrow/line-left-arrow-icon.svg");
+    background-image: url("../img/controller/line-arrow/line-left-arrow-icon.svg");
 }
 
 /*  moveToRight  */
 button#moveToRight{
-    background-image: url("/img/controller/black-arrow/black-right-arrow-icon.svg");
+    background-image: url("../img/controller/black-arrow/black-right-arrow-icon.svg");
     position: relative;
     right: 5px;
 }
 
 button#moveToRight:hover, button#moveToRight:active{
-    background-image: url("/img/controller/line-arrow/line-right-arrow-icon.svg");
+    background-image: url("../img/controller/line-arrow/line-right-arrow-icon.svg");
 }
 
 /*  moveToBackward  */
 button#moveToBackward{
-    background-image: url("/img/controller/black-arrow/black-bottom-arrow-icon.svg");
+    background-image: url("../img/controller/black-arrow/black-bottom-arrow-icon.svg");
     position: relative;
     bottom: 5px;
 }
 
 button#moveToBackward:hover, button#moveToBackward:active{
-    background-image: url("/img/controller/line-arrow/line-bottom-arrow-icon.svg");
+    background-image: url("../img/controller/line-arrow/line-bottom-arrow-icon.svg");
 }
 
 /*********************/
@@ -360,20 +376,20 @@ button#moveToBackward:hover, button#moveToBackward:active{
 
 /*  modeAutoOn  */
 button#modeAutoOn{
-    background-image: url("/img/turn-on-icon.svg");
+    background-image: url("../img/turn-on-icon.svg");
 }
 
 button#modeAutoOn:hover, button#modeAutoOn:active{
-    background-image: url("/img/turn-off-hover-icon.svg");
+    background-image: url("../img/turn-off-hover-icon.svg");
 }
 
 /*  modeAutoOff  */
 button#modeAutoOff{
-    background-image: url("/img/turn-off-icon.svg");
+    background-image: url("../img/turn-off-icon.svg");
 }
 
 button#modeAutoOff:hover, button#modeAutoOff:active{
-    background-image: url("/img/turn-on-hover-icon.svg");
+    background-image: url("../img/turn-on-hover-icon.svg");
 }
 
 /* souindOn & sound Off */
@@ -389,7 +405,7 @@ button#soundOn, button#soundOff{
 
 /*  soundOn & soundOff (hover & active) */
 button#soundOn, button#soundOff:hover, button#soundOff:active{
-    background-image: url("/img/sound-on-icon.svg");
+    background-image: url("../img/sound-on-icon.svg");
     background-color: white;
     box-shadow: white;
     border-color: black;
@@ -398,7 +414,7 @@ button#soundOn, button#soundOff:hover, button#soundOff:active{
 
 /*  soundOff & soundOn (hover & active) */
 button#soundOff, button#soundOn:hover, button#soundOn:active{
-    background-image: url("/img/sound-off-icon.svg");
+    background-image: url("../img/sound-off-icon.svg");
     background-color: black;
     box-shadow: black;
     border-color: white;
@@ -421,6 +437,10 @@ button#shooting:hover, button#shooting:active{
 
 button.disabled{
     display: none;
+}
+
+button.enabled{
+    display: inline-block;
 }
 
 /*********************/
@@ -496,8 +516,6 @@ button.disabled{
         border-color: rgb(255, 100, 0);
     }
 }
-
-
 
 /*************************/
 /*  Responsive by Height */
@@ -894,3 +912,7 @@ button.disabled{
 		transform: rotate(-540deg) scale(0);
 	}
 }
+
+/*********************************/
+/*  Animations by where Robot go */
+/*********************************/
