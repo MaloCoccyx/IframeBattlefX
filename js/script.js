@@ -137,7 +137,7 @@ function soundOnOff(){
 ########################
 ## Change Robot State ##
 ########################
-/* Enable / Disable buttons "sound" */
+/* Robot isShooting */
 function isShooting(){
 
     // Initialize Variables
@@ -154,6 +154,39 @@ function isShooting(){
     }
 }
 
+/* Robot isDead */
+function isDead(){
+
+    // Initialize Variables
+    const ROBOTBOX = document.getElementById("robotBox");
+
+    // Treatment
+    if(ROBOTBOX.className != "flex isDead"){
+        ROBOTBOX.className = "flex isDead";
+        setTimeout(() => {
+                ROBOTBOX.className = "flex isDead";
+            }, 1000
+        );
+        return;
+    }
+}
+
+/* Robot isTakeDamage */
+function isTakeDamage(){
+
+    // Initialize Variables
+    const ROBOTBOX = document.getElementById("robotBox");
+
+    // Treatment
+    if(ROBOTBOX.className != "flex isTakeDamage"){
+        ROBOTBOX.className = "flex isTakeDamage";
+        setTimeout(() => {
+                ROBOTBOX.className = "flex isAlive";
+            }, 1000
+        );
+        return;
+    }
+}
 
 
 /*

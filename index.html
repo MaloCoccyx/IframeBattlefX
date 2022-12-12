@@ -58,7 +58,7 @@
                     <div id="legend" class="flex fullWidth column">
                         <div class="legend">
                             <span class="isBorn"></span>
-                            <p>Est Né</p>
+                            <p>Est Né / Vivant</p>
                         </div>
                         <div class="legend legendLarge">
                             <span class="isTakeDamage"></span>
@@ -132,13 +132,17 @@
 
                         <!-- Buttons to mute / demute melody -->
                         <div id="controlSound">
-                            <button id="soundOn" class="enabled" onclick="soundOnOff();"></button>
-                            <button id="soundOff" class="disabled" onclick="soundOnOff();"></button>
+                            <button id="soundOn" class="disabled" onclick="soundOnOff();"></button>
+                            <button id="soundOff" class="enabled" onclick="soundOnOff();"></button>
                         </div>
 
                         <!-- Button to Shoot with Robot -->
                         <div id="shooting">
                             <button id="shooting" onclick="isShooting();">Tirer</button>
+                        <!-- Test anim for isDead & isTakeDamage 
+                            <button id="shooting" onclick="isDead();">Test anim isDead</button>
+                            <button id="shooting" onclick="isTakeDamage();">Test anim isTakeDamage</button>
+                        -->
                         </div>
                     </div>
                 </div>

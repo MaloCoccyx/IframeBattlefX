@@ -102,7 +102,7 @@ button{
 }
 
 button:hover, button:active{
-    transition-duration: 1s;
+    transition: 1s;
 }
 /******************************/
 /* Titles & Infos about Robot */
@@ -432,17 +432,12 @@ button#soundOn, button#soundOff{
 button#soundOn, button#soundOff:hover, button#soundOff:active{
     background-image: url("../img/sound-on-icon.svg");
     background-color: white;
-    box-shadow: white;
     border-color: black;
 }
-
 
 /*  soundOff & soundOn (hover & active) */
 button#soundOff, button#soundOn:hover, button#soundOn:active{
     background-image: url("../img/sound-off-icon.svg");
-    background-color: black;
-    box-shadow: black;
-    border-color: white;
 }
 
 /*  shooting  */
@@ -454,9 +449,11 @@ button#shooting{
     width: 100px;
     box-shadow: 0px 0px 2px white;
 }
+
+button#soundOff, button#soundOn:hover, button#soundOn:active,
 button#shooting:hover, button#shooting:active{
+    background-color: black;
     border-color: white;
-    background: black;
     color: white;
 }
 
@@ -517,7 +514,7 @@ button.enabled{
         width: 100%;
         height: 10%;
     }
-    
+
     #iFrame > div, #iFrame > div > progress{
         display: flex;
         width: 75%;
@@ -530,9 +527,9 @@ button.enabled{
         font-size: 12px;
         text-align: center;
         color: white;
-        text-shadow: 0px 0px 10px red;
+        text-shadow: 0px 0px 10px var(--is-dead);
         line-height: 20px;
-        border: 1px solid red;
+        border: 1px solid var(--is-dead);
         border-left: 0px;
     }
 
@@ -585,17 +582,21 @@ button.enabled{
     }
 
     /* Legend */
-    span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
-        width: 15px;
-        height: 15px;
-    }
-
     #legend{
         padding-left: 5px;
         padding-top: 2px;
         padding-bottom: 2px;
     }
 
+    span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
+        width: 15px;
+        height: 15px;
+    }
+
+    .isShooting{
+        animation: isShootingResponsive 1s linear 0s 1 normal none;
+    }
+    
     .legend{
         height: 25px;
     }
@@ -629,6 +630,10 @@ button.enabled{
         width: 30px;
         height: 30px;
         background-size: 30px;
+    }
+
+    .isShooting{
+        animation: isShootingResponsive 1s linear 0s 1 normal none;
     }
 }
 
@@ -685,15 +690,19 @@ button.enabled{
     }
 
     /* Legend */
+    #legend{
+        padding-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+
     span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
         width: 15px;
         height: 15px;
     }
 
-    #legend{
-        padding-left: 5px;
-        padding-top: 2px;
-        padding-bottom: 2px;
+    .isShooting{
+        animation: isShootingResponsive 1s linear 0s 1 normal none;
     }
 
     .legend, .legendShort{
@@ -768,15 +777,19 @@ button.enabled{
     }
 
     /* Legend */
+    #legend{
+        padding-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    
     span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
         width: 15px;
         height: 15px;
     }
 
-    #legend{
-        padding-left: 5px;
-        padding-top: 2px;
-        padding-bottom: 2px;
+    .isShooting{
+        animation: isShootingResponsive 1s linear 0s 1 normal none;
     }
 
     .legend{
@@ -898,6 +911,85 @@ button.enabled{
 	65% {
 		animation-timing-function: ease-in;
 		transform: translateY(12px);
+	}
+
+	82% {
+		animation-timing-function: ease-in;
+		transform: translateY(6px);
+	}
+
+	93% {
+		animation-timing-function: ease-in;
+		transform: translateY(4px);
+	}
+
+	25%,
+	55%,
+	75%,
+	87% {
+		animation-timing-function: ease-out;
+		transform: translateY(0px);
+	}
+
+	100% {
+		animation-timing-function: ease-out;
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+@keyframes isTakeDamage {
+	0%,
+	100% {
+		transform: rotate(0deg);
+		transform-origin: 50% 0;
+	}
+
+	10% {
+		transform: rotate(2deg);
+	}
+
+	20%,
+	40%,
+	60% {
+		transform: rotate(-4deg);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: rotate(4deg);
+	}
+
+	80% {
+		transform: rotate(-2deg);
+	}
+
+	90% {
+		transform: rotate(2deg);
+	}
+}
+
+/* Robot is Shooting */
+@keyframes isShootingResponsive {
+	0% {
+		animation-timing-function: ease-in;
+		opacity: 1;
+		transform: translateY(16px);
+	}
+
+	24% {
+		opacity: 1;
+	}
+
+	40% {
+		animation-timing-function: ease-in;
+		transform: translateY(12px);
+	}
+
+	65% {
+		animation-timing-function: ease-in;
+		transform: translateY(9px);
 	}
 
 	82% {
