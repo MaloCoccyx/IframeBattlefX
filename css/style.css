@@ -189,34 +189,39 @@ p.ammoShort, p.ammoExtraShort, p.lifeExtraShort{
 /* Color for Robot State */
 /*************************/
 
-span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-}
-
 .isBorn{
     box-shadow: 0px 0px 20px rgb(0, 255, 255);
     border: 1px solid rgb(0, 255, 255);
     background-color: rgb(0, 255, 255);
+    animation: isBorn 1s linear 0s 1 normal none;
 }
 
 .isTakeDamage{
     box-shadow: 0px 0px 20px rgb(138, 62, 8);
     border: 1px solid rgb(138, 62, 8);
     background-color: rgb(138, 62, 8);
+    animation: isTakeDamage 1s linear 0s 1 normal none;
 }
 
 .isShooting{
     box-shadow: 0px 0px 20px rgb(200, 255, 0);
     border: 1px solid rgb(200, 255, 0);
     background-color: rgb(200, 255, 0);
+    animation: isShooting 2s linear 0s 1 normal none;
 }
 
 .isDead{
     box-shadow: 0px 0px 20px red;
     border: 1px solid red;
     background-color: red;
+    animation: isDead 1s linear 0s 1 normal none;
+}
+
+span.isBorn, span.isTakeDamage, span.isShooting, span.isDead{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    animation-iteration-count: infinite;
 }
 
 .legend > p{
@@ -418,73 +423,85 @@ button.disabled{
     display: none;
 }
 
+/*********************/
+/*  Supervisor Mode  */
+/*********************/
+
 @media (max-height: 420px),
         (max-width: 460px){
-            body > *{
-                display: none;
-            }
-        
-            html, body {
-                display: flex;
-                background: none;
-                width: 100%;
-                height: 100%;
-                align-items: center;
-                justify-content: center;
-                flex-wrap: nowrap;
-                margin: 0px;
-                padding: 0px;
-                align-content: center;
-                flex-direction: column;
-            }
-        
-            body > #iFrame{
-                display: flex;
-                width: 100%;
-                height: 100%;
-                justify-content: flex-start;
-                flex-direction: column;
-                align-items: center;
-            }
-        
-            main{
-                width: 0;
-                height: 0;
-            }
-            
-            #iFrame > img{
-                width: 100%;
-                height: 90%;
-                display: flex;
-            }
 
-            #iFrameInfos{
-                width: 100%;
-                height: 10%;
-            }
-        
-            #iFrame > div, #iFrame > div > progress{
-                display: flex;
-                width: 75%;
-            }
-            #iFrame > div > p.ammo, #iFrame > div > p.life{
-                display: inline-block;
-                width: 50%;
-                height: 20px;
-                font-size: 12px;
-                text-align: center;
-                color: white;
-                text-shadow: 0px 0px 10px red;
-                line-height: 20px;
-                border: 1px solid red;
-                border-left: 0px;
-            }
+    body > *{
+        display: none;
+    }
 
-            #iframe > div > p.ammo{
-                text-shadow: 0px 0px 10px rgb(255, 100, 0);
-                border-color: rgb(255, 100, 0);
-            }
+    html, body {
+        display: flex;
+        background: none;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        margin: 0px;
+        padding: 0px;
+        align-content: center;
+        flex-direction: column;
+    }
+
+    body > #iFrame{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main{
+        width: 0;
+        height: 0;
+    }
+
+    #iFrame > img{
+        width: 100%;
+        height: 90%;
+        display: flex;
+    }
+
+    #iFrameInfos{
+        width: 100%;
+        height: 10%;
+    }
+    
+    #iFrame > div, #iFrame > div > progress{
+        display: flex;
+        width: 75%;
+    }
+
+    #iFrame > div > p.ammo, #iFrame > div > p.life{
+        display: inline-block;
+        width: 50%;
+        height: 20px;
+        font-size: 12px;
+        text-align: center;
+        color: white;
+        text-shadow: 0px 0px 10px red;
+        line-height: 20px;
+        border: 1px solid red;
+        border-left: 0px;
+    }
+
+    #iframe > div > p.ammo{
+        text-shadow: 0px 0px 10px rgb(255, 100, 0);
+        border-color: rgb(255, 100, 0);
+    }
 }
+
+
+
+/*************************/
+/*  Responsive by Height */
+/*************************/
 
 @media (max-height: 570px)
         and (min-height: 420px){
@@ -589,7 +606,9 @@ button.disabled{
     }
 }
 
-
+/************************/
+/*  Responsive by Width */
+/************************/
 
 @media (max-width: 750px)
         and (min-width: 440px){
@@ -747,4 +766,131 @@ button.disabled{
     #controlMode, #controlSound{
         min-width: 50px;
     }
+}
+
+/************************/
+/*  Animations by State */
+/************************/
+/* Robot is Born */
+@keyframes isBorn {
+	0% {
+		transform: scale3d(1, 1, 1);
+	}
+
+	30% {
+		transform: scale3d(1.25, 0.75, 1);
+	}
+
+	40% {
+		transform: scale3d(0.75, 1.25, 1);
+	}
+
+	50% {
+		transform: scale3d(1.15, 0.85, 1);
+	}
+
+	65% {
+		transform: scale3d(0.95, 1.05, 1);
+	}
+
+	75% {
+		transform: scale3d(1.05, 0.95, 1);
+	}
+
+	100% {
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+/* Robot is Take Damage */
+@keyframes isTakeDamage {
+	0%,
+	100% {
+		transform: rotate(0deg);
+		transform-origin: 50% 0;
+	}
+
+	10% {
+		transform: rotate(2deg);
+	}
+
+	20%,
+	40%,
+	60% {
+		transform: rotate(-4deg);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: rotate(4deg);
+	}
+
+	80% {
+		transform: rotate(-2deg);
+	}
+
+	90% {
+		transform: rotate(2deg);
+	}
+}
+
+/* Robot is Shooting */
+@keyframes isShooting {
+	0% {
+		animation-timing-function: ease-in;
+		opacity: 1;
+		transform: translateY(45px);
+	}
+
+	24% {
+		opacity: 1;
+	}
+
+	40% {
+		animation-timing-function: ease-in;
+		transform: translateY(24px);
+	}
+
+	65% {
+		animation-timing-function: ease-in;
+		transform: translateY(12px);
+	}
+
+	82% {
+		animation-timing-function: ease-in;
+		transform: translateY(6px);
+	}
+
+	93% {
+		animation-timing-function: ease-in;
+		transform: translateY(4px);
+	}
+
+	25%,
+	55%,
+	75%,
+	87% {
+		animation-timing-function: ease-out;
+		transform: translateY(0px);
+	}
+
+	100% {
+		animation-timing-function: ease-out;
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+/* Robot is Dead */
+@keyframes isDead {
+	0% {
+		opacity: 1;
+		transform: rotate(0) scale(1);
+	}
+
+	100% {
+		opacity: 0;
+		transform: rotate(-540deg) scale(0);
+	}
 }
