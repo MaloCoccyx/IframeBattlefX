@@ -10,6 +10,7 @@
         <title>IframeBattlefX - MarioBot</title>
     </head>
     <body>
+        <!-- Supervisor Mode -->
         <main>
             <!-- Title of Project -->
             <div id="header" class="threeQuarter">
@@ -44,7 +45,7 @@
                 <div id="robot" class="flex halfWidth">
                     <div id="robotBox" class="flex isBorn">
                         <!-- Image for Display Robot -->
-                        <img src="img/mario/robot-forward.svg" alt="MarioBot is forward">
+                        <img id="displayRobot" src="img/mario/robot-forward.svg" alt="MarioBot is forward" class="forward">
                     </div>
                 </div>
 
@@ -96,30 +97,30 @@
                     <!-- Actions "Turn" & "Move Forward" -->
                     <div id="controllerTop" class="flex fullWidth">
                         <div class="turnToRight">
-                            <button id="turnToRight"></button>
+                            <button id="turnToRight" onclick="turnToRight();"></button>
                         </div>
                         <div class="moveToForward">
-                            <button id="moveToForward"></button>
+                            <button id="moveToForward" onclick="moveToForward();"></button>
                         </div>
                         <div class="turnToLeft">
-                            <button id="turnToLeft"></button>
+                            <button id="turnToLeft" onclick="turnToLeft();"></button>
                         </div>
                     </div>
 
                     <!-- Actions "Move Left" & "Move Right" -->
                     <div id="controllerMiddle" class="flex fullWidth">
                         <div class="moveToLeft">
-                            <button id="moveToLeft"></button>
+                            <button id="moveToLeft" onclick="moveToLeft();"></button>
                         </div>
                         <div class="moveToRight">
-                            <button id="moveToRight"></button>
+                            <button id="moveToRight" onclick="moveToRight();"></button>
                         </div>
                     </div>
                     
                     <!-- Action "Move Backward" -->
                     <div id="controllerBottom" class="flex fullWidth">
                         <div class="moveToBackward">
-                            <button id="moveToBackward"></button>
+                            <button id="moveToBackward" onclick="moveToBackward();"></button>
                         </div>
                     </div>
                 </div>
@@ -169,4 +170,5 @@
             <img src="img/mario/robot-backward.svg" alt="MarioBot is Forward">
         </div>
     </body>
+    <script src="js/script.js"></script>
 </html>
