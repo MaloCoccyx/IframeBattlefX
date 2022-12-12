@@ -22,15 +22,17 @@
 
             <!-- Name and Infos about the Robot -->
             <div id="nameAndInfos" class="flex threeQuarter">
+                <!-- Name of Robot-->
                 <div id="nameRobot" class="flex halfWidth">
                     <h2>MarioBot</h2>
                 </div>
 
                 <!-- Infos about the Robot -->
                 <div id="infos" class="flex">
+                    <!-- Life of the Robot -->
                     <p class="life">Vie : 100 / 100</p>
                     <p class="lifeExtraShort">V: 100/100</p>
-                    
+                    <!-- Ammo of the Robot -->
                     <p class="ammo">Munitions : 100 / 100</p>
                     <p class="ammoShort">Mun: 100/100</p>
                     <p class="ammoExtraShort">M: 100/100</p>
@@ -47,11 +49,12 @@
                 </div>
 
                 <!-- Legend -->
-                <div id="legendBox" class="flex fullWidth"
+                <div id="legendBox" class="flex fullWidth">
+
                     <div id="titleLegend" class="flex fullWidth">
                         <h3>Le robot :</h3>
                     </div>
-
+                    
                     <div id="legend" class="flex fullWidth column">
                         <div class="legend">
                             <span class="isBorn"></span>
@@ -79,6 +82,7 @@
 
             <!-- Actions users can do -->
             <div id="usersActions" class="flex threeQuarter">
+
                 <!-- Controller to Move and Turn Robot -->
                 <div id="controller" class="flex column">
                     <div id="controllerTop" class="flex fullWidth">
@@ -125,6 +129,8 @@
                             <button id="modeAutoOn" class="enabled"  onclick="modeAutoOnOff();"></button>
                             <button id="modeAutoOff" class="disabled" onclick="modeAutoOnOff();"></button>
                         </div>
+
+                        <!-- Buttons to mute / demute melody -->
                         <div id="controlSound">
                             <button id="soundOn" class="enabled" onclick="soundOnOff();"></button>
                             <button id="soundOff" class="disabled" onclick="soundOnOff();"></button>
