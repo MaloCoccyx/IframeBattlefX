@@ -104,10 +104,24 @@ function modeAutoOnOff(){
 
     // Treatment
     if(BUTTONOFF.className == "disabled" && BUTTONON.className == "enabled"){
+        document.querySelector('#turnToRight').disabled = true;
+        document.querySelector('#turnToLeft').disabled = true;
+        document.querySelector('#moveToRight').disabled = true;
+        document.querySelector('#moveToForward').disabled = true;
+        document.querySelector('#moveToLeft').disabled = true;
+        document.querySelector('#moveToBackward').disabled = true;
+        document.querySelector('#shooting').disabled = true;
         BUTTONOFF.className = "enabled";
         BUTTONON.className = "disabled";
         return
     }else if(BUTTONOFF.className == "enabled" && BUTTONON.className == "disabled"){
+        document.querySelector('#turnToRight').disabled = false;
+        document.querySelector('#turnToLeft').disabled = false;
+        document.querySelector('#moveToRight').disabled = false;
+        document.querySelector('#moveToForward').disabled = false;
+        document.querySelector('#moveToLeft').disabled = false;
+        document.querySelector('#moveToBackward').disabled = false;
+        document.querySelector('#shooting').disabled = false;
         BUTTONOFF.className = "disabled";
         BUTTONON.className = "enabled";
         return
@@ -193,7 +207,7 @@ function isTakeDamage(){
 ###################
 ## Robot MoveToX ##
 ###################
-/* Robot Move To Parameter (Forward, Left, Right, Backward)*/
+/* Robot MoveToX (Forward, Left, Right, Backward)*/
 function isMoveTo(Parameter){
 
     // Initialize Variables
