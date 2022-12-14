@@ -596,7 +596,7 @@ button.enabled{
     .isShooting{
         animation: isShootingResponsive 1s linear 0s 1 normal none;
     }
-    
+
     .legend{
         height: 25px;
     }

@@ -9,20 +9,36 @@
 */
 
 /*
+#################################
+## Initialize Global Variables ##
+#################################
+*/
+const IMG = document.getElementById("displayRobot");
+const IMGIFRAME = document.getElementById("iFrameDisplayRobot");
+const ROBOTBOX = document.getElementById("robotBox");
+const BUTTONON = document.getElementById("modeAutoOn");
+const BUTTONOFF = document.getElementById("modeAutoOff");
+const SOUNDON = document.getElementById("soundOn");
+const SOUNDOFF = document.getElementById("soundOff");
+
+var moveAndRotate = [
+    document.querySelector('#turnToRight'), document.querySelector('#turnToLeft'), document.querySelector('#moveToRight'), 
+    document.querySelector('#moveToForward'), document.querySelector('#moveToLeft'), document.querySelector('#moveToBackward'), 
+    document.querySelector('#shooting')
+];
+
+/*
 ###########################
 ## Change Robot Rotation ##
 ###########################
 /* Change Robot Rotation onClick turnToLeft Button */
 function turnToLeft() {
 
-    // Initialize Variables
-    const IMG = document.getElementById("displayRobot");
-    const IMGIFRAME = document.getElementById("iFrameDisplayRobot");
-
     // Treatment
     if(IMG.className == "forward" && IMGIFRAME.className == "forward"){
         IMG.className = "left";
         IMG.src = "img/mario/robot-left.svg";
+
         /* Mode Iframe */
         IMGIFRAME.className = "left";
         IMGIFRAME.src = "img/mario/robot-left.svg";
@@ -30,6 +46,7 @@ function turnToLeft() {
     }else if(IMG.className == "left" && IMGIFRAME.className == "left"){
         IMG.className = "backward";
         IMG.src = "img/mario/robot-backward.svg";
+
         /* Mode Iframe */
         IMGIFRAME.className = "backward";
         IMGIFRAME.src = "img/mario/robot-backward.svg";
@@ -37,6 +54,7 @@ function turnToLeft() {
     }else if(IMG.className == "backward" && IMGIFRAME.className == "backward"){
         IMG.className = "right";
         IMG.src = "img/mario/robot-right.svg";
+
         /* Mode Iframe */
         IMGIFRAME.className = "right";
         IMGIFRAME.src = "img/mario/robot-right.svg";
@@ -44,6 +62,7 @@ function turnToLeft() {
     }else if(IMG.className == "right" && IMGIFRAME.className == "right"){
         IMG.className = "forward";
         IMG.src = "img/mario/robot-forward.svg";
+
         /* Mode Iframe */
         IMGIFRAME.className = "forward";
         IMGIFRAME.src = "img/mario/robot-forward.svg";
@@ -54,14 +73,11 @@ function turnToLeft() {
 /* Change Robot Rotation onClick turnToRight Button */
 function turnToRight() {
 
-    // Initialize Variables
-    const IMG = document.getElementById("displayRobot");
-    const IMGIFRAME = document.getElementById("iFrameDisplayRobot");
-
     // Treatment
     if(IMG.className == "forward" && IMGIFRAME.className == "forward"){
         IMG.className = "right";
         IMG.src = "img/mario/robot-right.svg";
+
         /* Mode Iframe */
         IMGIFRAME.className = "right";
         IMGIFRAME.src = "img/mario/robot-right.svg";
@@ -69,6 +85,7 @@ function turnToRight() {
     }else if(IMG.className == "right" && IMGIFRAME.className == "right"){
         IMG.className = "backward";
         IMG.src = "img/mario/robot-backward.svg";
+
         /* Mode Iframe */
         IMGIFRAME.className = "backward";
         IMGIFRAME.src = "img/mario/robot-backward.svg";
@@ -76,6 +93,7 @@ function turnToRight() {
     }else if(IMG.className == "backward" && IMGIFRAME.className == "backward"){
         IMG.className = "left";
         IMG.src = "img/mario/robot-left.svg";
+
         /* Mode Iframe */
         IMGIFRAME.className = "left";
         IMGIFRAME.src = "img/mario/robot-left.svg";
@@ -83,6 +101,7 @@ function turnToRight() {
     }else if(IMG.className == "left" && IMGIFRAME.className == "left"){
         IMG.className = "forward";
         IMG.src = "img/mario/robot-forward.svg";
+
         /* Mode Iframe */
         IMGIFRAME.className = "forward";
         IMGIFRAME.src = "img/mario/robot-forward.svg";
@@ -98,52 +117,50 @@ function turnToRight() {
 /* Enable / Disable buttons "modeAuto" */
 function modeAutoOnOff(){
 
-    // Initialize Variables
-    const BUTTONON = document.getElementById("modeAutoOn");
-    const BUTTONOFF = document.getElementById("modeAutoOff");
-
     // Treatment
     if(BUTTONOFF.className == "disabled" && BUTTONON.className == "enabled"){
-        document.querySelector('#turnToRight').disabled = true;
-        document.querySelector('#turnToLeft').disabled = true;
-        document.querySelector('#moveToRight').disabled = true;
-        document.querySelector('#moveToForward').disabled = true;
-        document.querySelector('#moveToLeft').disabled = true;
-        document.querySelector('#moveToBackward').disabled = true;
-        document.querySelector('#shooting').disabled = true;
-        BUTTONOFF.className = "enabled";
-        BUTTONON.className = "disabled";
-        return
+
+        // Disable Controls
+        moveAndRotate[0].disabled = true; // turnToRight
+        moveAndRotate[1].disabled = true; // turnToLeft
+        moveAndRotate[2].disabled = true; // moveToRight
+        moveAndRotate[3].disabled = true; // moveToForward
+        moveAndRotate[4].disabled = true; // moveToLeft
+        moveAndRotate[5].disabled = true; // moveToBackward
+        moveAndRotate[6].disabled = true; // button to shoot
+        BUTTONOFF.className = "enabled"; // enable button modeAutoOff
+        BUTTONON.className = "disabled"; // disable button modeAutoOn
+
+        return;
     }else if(BUTTONOFF.className == "enabled" && BUTTONON.className == "disabled"){
-        document.querySelector('#turnToRight').disabled = false;
-        document.querySelector('#turnToLeft').disabled = false;
-        document.querySelector('#moveToRight').disabled = false;
-        document.querySelector('#moveToForward').disabled = false;
-        document.querySelector('#moveToLeft').disabled = false;
-        document.querySelector('#moveToBackward').disabled = false;
-        document.querySelector('#shooting').disabled = false;
-        BUTTONOFF.className = "disabled";
-        BUTTONON.className = "enabled";
-        return
+
+        // Enable Controls
+        moveAndRotate[0].disabled = false;
+        moveAndRotate[1].disabled = false;
+        moveAndRotate[2].disabled = false;
+        moveAndRotate[3].disabled = false;
+        moveAndRotate[4].disabled = false;
+        moveAndRotate[5].disabled = false;
+        moveAndRotate[6].disabled = false;
+        BUTTONOFF.className = "disabled"; // disable button modeAutoOff
+        BUTTONON.className = "enabled"; // enable button modeAutoOn
+
+        return;
     }
 }
 
 /* Enable / Disable buttons "sound" */
 function soundOnOff(){
 
-    // Initialize Variables
-    const SOUNDON = document.getElementById("soundOn");
-    const SOUNDOFF = document.getElementById("soundOff");
-
     // Treatment
     if(SOUNDOFF.className == "disabled" && SOUNDON.className == "enabled"){
         SOUNDOFF.className = "enabled";
         SOUNDON.className = "disabled";
-        return
+        return;
     }else if(SOUNDOFF.className == "enabled" && SOUNDON.className == "disabled"){
         SOUNDOFF.className = "disabled";
         SOUNDON.className = "enabled";
-        return
+        return;
     }
 }
 
@@ -151,75 +168,43 @@ function soundOnOff(){
 ########################
 ## Change Robot State ##
 ########################
-/* Robot isShooting */
-function isShooting(){
+*/
+
+function robotState(parameter){
 
     // Initialize Variables
-    const ROBOTBOX = document.getElementById("robotBox");
 
     // Treatment
-    if(ROBOTBOX.className != "flex isShooting"){
-        ROBOTBOX.className = "flex isShooting";
+    if(ROBOTBOX.className != "flex " + parameter){
+        ROBOTBOX.className = "flex " + parameter;
         setTimeout(() => {
+            // If paremeter != "isDead", robot still alive
+            if(parameter != 'isDead'){
                 ROBOTBOX.className = "flex isAlive";
-            }, 1000
-        );
-        return;
-    }
-}
-
-/* Robot isDead */
-function isDead(){
-
-    // Initialize Variables
-    const ROBOTBOX = document.getElementById("robotBox");
-
-    // Treatment
-    if(ROBOTBOX.className != "flex isDead"){
-        ROBOTBOX.className = "flex isDead";
-        setTimeout(() => {
+            }else{
                 ROBOTBOX.className = "flex isDead";
+            }
             }, 1000
         );
         return;
     }
 }
-
-/* Robot isTakeDamage */
-function isTakeDamage(){
-
-    // Initialize Variables
-    const ROBOTBOX = document.getElementById("robotBox");
-
-    // Treatment
-    if(ROBOTBOX.className != "flex isTakeDamage"){
-        ROBOTBOX.className = "flex isTakeDamage";
-        setTimeout(() => {
-                ROBOTBOX.className = "flex isAlive";
-            }, 1000
-        );
-        return;
-    }
-}
-
 
 /*
 ###################
 ## Robot MoveToX ##
 ###################
+
 /* Robot MoveToX (Forward, Left, Right, Backward)*/
 function isMoveTo(Parameter){
 
-    // Initialize Variables
-    const MOVETO = document.getElementById("robotBox");
-
     // Treatment
-    MOVETO.classList.remove("isMoveToForward");
-    MOVETO.classList.remove("isMoveToLeft");
-    MOVETO.classList.remove("isMoveToRight");
-    MOVETO.classList.remove("isMoveToBackward");
+    ROBOTBOX.classList.remove("isMoveToForward");
+    ROBOTBOX.classList.remove("isMoveToLeft");
+    ROBOTBOX.classList.remove("isMoveToRight");
+    ROBOTBOX.classList.remove("isMoveToBackward");
     setTimeout(() => {
-            MOVETO.classList.add("isMoveTo" + Parameter);
+            ROBOTBOX.classList.add("isMoveTo" + Parameter);
         }, 1
     );
     return;

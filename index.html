@@ -54,7 +54,7 @@
                     <div id="titleLegend" class="flex fullWidth">
                         <h3>Le robot :</h3>
                     </div>
-                    
+
                     <div id="legend" class="flex fullWidth column">
                         <div class="legend">
                             <span class="isBorn"></span>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-            
+
                 <!-- Users Actions -->
                 <div id="actions" class="flex column">
                     <div id="actionsTitle" class="flex">
@@ -138,11 +138,10 @@
 
                         <!-- Button to Shoot with Robot -->
                         <div id="shootingBox">
-                            <button id="shooting" onclick="isShooting();">Tirer</button>
-                        <!-- Test anim for isDead & isTakeDamage 
-                            <button id="shooting" onclick="isDead();">Test anim isDead</button>
-                            <button id="shooting" onclick="isTakeDamage();">Test anim isTakeDamage</button>
-                        -->
+                            <button id="shooting" onclick="robotState('isShooting');">Tirer</button>
+                            <!-- Test animations 
+                            <button id="shooting" onclick="robotState('isDead');">Test anim isDead</button>
+                            <button id="shooting" onclick="robotState('isTakeDamage');">Test anim isTakeDamage</button>-->
                         </div>
                     </div>
                 </div>
