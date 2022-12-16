@@ -1,3 +1,4 @@
+//import { Agent } from "./iframebattlefx.js"; // api iframebattlefx by Julien Arné @jusdeliens.com
 /*
 ################################
 ##                            ##
@@ -8,11 +9,6 @@
 ################################
 */
 
-/*
-#################################
-## Initialize Global Variables ##
-#################################
-*/
 const IMG = document.getElementById("displayRobot");
 const IMGIFRAME = document.getElementById("iFrameDisplayRobot");
 const ROBOTBOX = document.getElementById("robotBox");

@@ -65,7 +65,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .flex{
-    display: flex;  
+    display: flex;
 }
 
 .fullWidth{
@@ -147,11 +147,11 @@ button:hover, button:active{
 }
 
 p.life, p.lifeExtraShort{
-    background: linear-gradient(to right, var(--is-dead) 50%,transparent 50%);
+    background: linear-gradient(to right, var(--is-dead) 50%,transparent 25%);
 }
 
 p.ammo, p.ammoShort, p.ammoExtraShort{
-    background: linear-gradient(to right, var(--ammo) 50%,transparent 50%);
+    background: linear-gradient(to right, var(--ammo) 25%,transparent 25%);
 }
 
 p.ammoShort, p.ammoExtraShort, p.lifeExtraShort{
