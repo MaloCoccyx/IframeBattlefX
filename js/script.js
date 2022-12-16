@@ -1,4 +1,5 @@
-//import { Agent } from "./iframebattlefx.js"; // api iframebattlefx by Julien Arné @jusdeliens.com
+import { Agent } from "./iframebattlefx.js";
+
 /*
 ################################
 ##                            ##
@@ -9,6 +10,11 @@
 ################################
 */
 
+/*
+#################################
+## Initialize Global Variables ##
+#################################
+*/
 const IMG = document.getElementById("displayRobot");
 const IMGIFRAME = document.getElementById("iFrameDisplayRobot");
 const ROBOTBOX = document.getElementById("robotBox");
@@ -23,13 +29,24 @@ var moveAndRotate = [
     document.querySelector('#shooting')
 ];
 
+
+/*
+################################
+## Initialize Robot Variables ##
+################################
+*/
+var modeAuto = false;
+var robotState = "isBorn";
+var robotDead = false;
+
+
 /*
 ###########################
 ## Change Robot Rotation ##
 ###########################
 /* Change Robot Rotation onClick turnToLeft Button */
-function turnToLeft() {
 
+function turnToLeft() {
     // Treatment
     if(IMG.className == "forward" && IMGIFRAME.className == "forward"){
         IMG.className = "left";
@@ -124,6 +141,7 @@ function modeAutoOnOff(){
         moveAndRotate[4].disabled = true; // moveToLeft
         moveAndRotate[5].disabled = true; // moveToBackward
         moveAndRotate[6].disabled = true; // button to shoot
+        modeAuto = true;                 // set modeAuto to True
         BUTTONOFF.className = "enabled"; // enable button modeAutoOff
         BUTTONON.className = "disabled"; // disable button modeAutoOn
 
@@ -138,6 +156,7 @@ function modeAutoOnOff(){
         moveAndRotate[4].disabled = false;
         moveAndRotate[5].disabled = false;
         moveAndRotate[6].disabled = false;
+        modeAuto = false;                 // set modeAuto to False
         BUTTONOFF.className = "disabled"; // disable button modeAutoOff
         BUTTONON.className = "enabled"; // enable button modeAutoOn
 
@@ -166,19 +185,18 @@ function soundOnOff(){
 ########################
 */
 
-function robotState(parameter){
-
-    // Initialize Variables
-
+function displayRobotState(){
     // Treatment
-    if(ROBOTBOX.className != "flex " + parameter){
-        ROBOTBOX.className = "flex " + parameter;
+    if(ROBOTBOX.className != "flex " + robotState){
+        ROBOTBOX.className = "flex " + robotState;
         setTimeout(() => {
             // If paremeter != "isDead", robot still alive
-            if(parameter != 'isDead'){
+            if(robotState != 'isDead'){
                 ROBOTBOX.className = "flex isAlive";
+                robotState = "isAlive";
             }else{
                 ROBOTBOX.className = "flex isDead";
+                robotState = "isDead";
             }
             }, 1000
         );
@@ -201,7 +219,147 @@ function isMoveTo(Parameter){
     ROBOTBOX.classList.remove("isMoveToBackward");
     setTimeout(() => {
             ROBOTBOX.classList.add("isMoveTo" + Parameter);
+            if(Parameter == "forward"){
+                marioBot = move
+            }else if(Parameter == "forward"){
+                
+            }else if(Parameter == "forward"){
+                
+            }else if(Parameter == "forward"){
+                
+            }
         }, 1
     );
     return;
 }
+
+
+/*
+########################
+## Change Robot State ##
+########################
+*/
+function stateChanged(Parameter){
+    robotState = Parameter;
+    if(life <= 0){
+        robotState = "isDead";
+        displayRobotState(robotState);
+        robotDead = true;
+    }else if(fire = true){
+        displayRobotState(robotState);
+    }else if(isTakeDamage == true){
+        robotState = "isTakeDamage";
+        displayRobotState(robotState);
+    }
+}
+
+
+
+/*
+########################
+## Connected to Arena ##
+########################
+*/
+function onLoaded(event){
+    // Get params in URL
+    var url = new URL(window.location.href);
+    console.log(url);
+
+    /** 
+     * Creates and connects the agent in the arena
+     * with parameters pass through url
+     * 
+     * @param {string} 	id          The wanted name of the agent
+     * @param {string} 	username    Username to connect to the server
+     * @param {string} 	password    User password coming with the username to connect to the server
+     * @param {string}  arena       The name of the arena to join (iframebattlefx)
+     * @param {number}  port        The server port number (443)
+     * @param {string}  server      The server URL (mqtt.jusdeliens.com)
+     * @param {number} 	verbose     The wanted verbosity of the logs. 0: None, 1: Error, 2: Warning, 3: Info, 4: Debug
+     * @param {Boolean} readonly    Set to true to only read agent state (default). False to be able to control agent.
+    */
+    var id = url.searchParams.get('id');
+    var readOnly = url.searchParams.get('readonly');
+    var userName = url.searchParams.get('username');
+    var passWord = url.searchParams.get('password');
+    var port = url.searchParams.get('port');
+    var arena = url.searchParams.get('arena');
+    var server = url.searchParams.get('server');
+    var verbose = url.searchParams.get('verbose');
+
+    /**
+     * Connecting to pytactx and subscribe to agent events
+    */
+
+    var agent = new Agent(
+        "toto", // id
+        "demo", // arena
+        "demo", // username
+        "demo", // password 
+        "8080", // port
+        "mqtt.jusdeliens.com", // server
+        3, // verbose
+        true // true
+    );
+    agent.connect();
+
+    document.getElementById("idRobot").textContent = agent.id; // Get Robot Name
+
+    /**
+     * @var {number}  percentAmmo Calculate the percentage of ammo
+     * @var {string}  ammoBg Change the background gradient uses percentAmmo as value for percentage
+     * @var {Array}   ammo Get all elements of ammo bar (responsive elements) and put it into array to easily modify them
+     */
+    let percentAmmo = (((agent.ammo) / 100) * 100);
+    let ammoBg = "linear-gradient(to right, var(--ammo) " + percentAmmo +"%,transparent " + percentAmmo +"%)";
+    
+    let ammo = [
+        document.getElementById("ammo"),
+        document.getElementById("ammoShort"),
+        document.getElementById("ammoExtraShort"),
+        document.getElementById("ammoIframe")
+    ];
+
+    ammo[0].textContent = "Munitnions : " + (((agent.ammo) / 100) * 100) + " / " + "100";
+    ammo[0].style.background = ammoBg;
+    ammo[1].textContent = "Mun: " + (((agent.ammo) / 100) * 100) + "/" + "100";
+    ammo[1].style.background = ammoBg;
+    ammo[2].textContent = "M: " + (((agent.ammo) / 100) * 100) + "/" + "100";
+    ammo[2].style.background = ammoBg;
+    ammo[3].textContent = (((agent.ammo) / 100) * 100) + "/" + "100";
+    ammo[3].style.background = ammoBg;
+
+    /**
+     * @var {number}  percentlife Calculate the percentage of life
+     * @var {string}  lifeBg Change the background gradient uses percentAmmo as value for percentage
+     * @var {Array}   life Get all elements of ammo bar (responsive elements) and put it into array to easily modify them
+     */
+    let percentlife = (((agent.life) / 100) * 100);
+    let lifeBg = "linear-gradient(to right, var(--is-dead) " + percentlife +"%,transparent " + percentlife +"%)";
+
+    let life = [
+        document.getElementById("life"),
+        document.getElementById("lifeShort"),
+        document.getElementById("lifeIframe")
+    ];
+
+    life[0].textContent = "Vie : " + (((agent.life) / 100) * 100) + " / " + "100";
+    life[0].style.background = lifeBg;
+    life[1].textContent = "V: " + (((agent.life) / 100) * 100) + " / " + "100";
+    life[1].style.background = lifeBg;
+    life[2].textContent = (((agent.life) / 100) * 100) + " / " + "100";
+    life[2].style.background = lifeBg;
+}
+
+
+
+/*
+############
+## Update ##
+############
+*/
+function onUpdate(){
+
+}
+
+document.addEventListener("DOMContentLoaded", onLoaded);

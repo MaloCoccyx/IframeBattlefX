@@ -8,6 +8,9 @@
         <link href="https://fonts.cdnfonts.com/css/new-super-mario-font-u" rel="stylesheet">
         <link rel="icon" href="img/favicon.ico">
         <title>IframeBattlefX - MarioBot</title>
+        <script src="js/paho-mqtt-min.js"></script>
+        <script type="module" src="js/iframebattlefx.js"></script>
+        <script type="module" src="js/script.js"></script>
     </head>
     <body>
         <!-- Supervisor Mode -->
@@ -24,18 +27,18 @@
             <div id="nameAndInfos" class="flex threeQuarter">
                 <!-- Name of Robot-->
                 <div id="nameRobot" class="flex halfWidth">
-                    <h2>MarioBot</h2>
+                    <h2 id="idRobot">MarioBot</h2>
                 </div>
 
                 <!-- Infos about the Robot -->
                 <div id="infos" class="flex">
                     <!-- Life of the Robot -->
-                    <p class="life">Vie : 75 / 100</p>
-                    <p class="lifeExtraShort">V: 75/100</p>
+                    <p id="life" class="life">Vie : 75 / 100</p>
+                    <p id="lifeShort" class="lifeExtraShort">V: 75/100</p>
                     <!-- Ammo of the Robot -->
-                    <p class="ammo">Munitions : 25 / 100</p>
-                    <p class="ammoShort">Mun: 25/100</p>
-                    <p class="ammoExtraShort">M: 25/100</p>
+                    <p id="ammo" class="ammo">Munitions : 25 / 100</p>
+                    <p id="ammoShort" class="ammoShort">Mun: 25/100</p>
+                    <p id="ammoExtraShort" class="ammoExtraShort">M: 25/100</p>
                 </div>
             </div>
 
@@ -130,18 +133,17 @@
                             <button id="modeAutoOff" class="disabled" onclick="modeAutoOnOff();"></button>
                         </div>
 
-                        <!-- Buttons to mute / demute melody -->
+                        <!-- Enable / disable melody -->
                         <div id="controlSound">
                             <button id="soundOn" class="disabled" onclick="soundOnOff();"></button>
                             <button id="soundOff" class="enabled" onclick="soundOnOff();"></button>
                         </div>
 
-                        <!-- Button to Shoot with Robot -->
+                        <!-- Shoot -->
                         <div id="shootingBox">
-                            <button id="shooting" onclick="robotState('isShooting');">Tirer</button>
-                            <!-- Test animations 
-                            <button id="shooting" onclick="robotState('isDead');">Test anim isDead</button>
-                            <button id="shooting" onclick="robotState('isTakeDamage');">Test anim isTakeDamage</button>-->
+                            <button id="shooting" onclick="stateChanged('isShooting');">Tirer</button>
+                            <button id="shooting" onclick="stateChanged('isDead');">Test anim isDead</button>
+                            <button id="shooting" onclick="stateChanged('isTakeDamage');">Test anim isTakeDamage</button>
                         </div>
                     </div>
                 </div>
@@ -152,13 +154,11 @@
         <div id="iFrame">
             <div class="iFrameInfos">
                 <!-- Life of the Robot -->
-                <p class="life">100/100</p>
+                <p id="lifeIframe" class="life">100/100</p>
                 <!-- Ammo of the Robot -->
-                <p class="ammo">100/100</p>
+                <p id="ammoIframe" class="ammo">100/100</p>
             </div>
             <img id="iFrameDisplayRobot" src="img/mario/robot-forward.svg" alt="MarioBot is forward" class="forward">
         </div>
-        <script src="js/script.js"></script>
-        <!--<script src="js/iframebattlefx.js"></script>-->
     </body>
 </html>
