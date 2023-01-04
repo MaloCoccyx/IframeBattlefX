@@ -47,7 +47,7 @@
                 <!-- Display Robot -->
                 <div id="robot" class="flex halfWidth">
                     <div id="robotBox" class="flex isBorn">
-                        <img id="displayRobot" src="img/mario/robot-forward.svg" alt="MarioBot is forward" class="forward">
+                        <img id="displayRobot" src="img/mario/robot-right.svg" alt="MarioBot is left" class="forward">
                     </div>
                 </div>
 
@@ -90,28 +90,28 @@
                 <div id="controller" class="flex column">
                     <div id="controllerTop" class="flex fullWidth">
                         <div class="turnToRight">
-                            <button id="turnToRight" onclick="turnToRight();"></button>
+                            <button id="turnToRight"></button>
                         </div>
                         <div class="moveToForward">
-                            <button id="moveToForward" onclick="isMoveTo('Forward');"></button>
+                            <button id="moveToForward"></button>
                         </div>
                         <div class="turnToLeft">
-                            <button id="turnToLeft" onclick="turnToLeft();"></button>
+                            <button id="turnToLeft"></button>
                         </div>
                     </div>
 
                     <div id="controllerMiddle" class="flex fullWidth">
                         <div class="moveToLeft">
-                            <button id="moveToLeft" onclick="isMoveTo('Left');"></button>
+                            <button id="moveToLeft"></button>
                         </div>
                         <div class="moveToRight">
-                            <button id="moveToRight" onclick="isMoveTo('Right');"></button>
+                            <button id="moveToRight"></button>
                         </div>
                     </div>
 
                     <div id="controllerBottom" class="flex fullWidth">
                         <div class="moveToBackward">
-                            <button id="moveToBackward" onclick="isMoveTo('Backward');"></button>
+                            <button id="moveToBackward"></button>
                         </div>
                     </div>
                 </div>
@@ -141,9 +141,7 @@
 
                         <!-- Shoot -->
                         <div id="shootingBox">
-                            <button id="shooting" onclick="stateChanged('isShooting');">Tirer</button>
-                            <button id="shooting" onclick="stateChanged('isDead');">Test anim isDead</button>
-                            <button id="shooting" onclick="stateChanged('isTakeDamage');">Test anim isTakeDamage</button>
+                            <button id="shooting">Tirer</button>
                         </div>
                     </div>
                 </div>
