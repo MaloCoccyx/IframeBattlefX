@@ -13,8 +13,8 @@
 ## Initialize Global Variables ##
 #################################
 */
-const IMG = document.getElementById("displayRobot");
-const IMGIFRAME = document.getElementById("iFrameDisplayRobot");
+//const IMG = document.querySelector("displayRobot");
+//const IMGIFRAME = document.querySelector("iFrameDisplayRobot");
 const ROBOTBOX = document.getElementById("robotBox");
 const BUTTONON = document.getElementById("modeAutoOn");
 const BUTTONOFF = document.getElementById("modeAutoOff");
@@ -26,90 +26,6 @@ var moveAndRotate = [
     document.querySelector('#moveToForward'), document.querySelector('#moveToLeft'), document.querySelector('#moveToBackward'), 
     document.querySelector('#shooting')
 ];
-
-
-/*
-###########################
-## Change Robot Rotation ##
-###########################
-/* Change Robot Rotation onClick turnToLeft Button */
-
-function turnToLeft() {
-    // Treatment
-    if(IMG.className == "forward" && IMGIFRAME.className == "forward"){
-        IMG.className = "left";
-        IMG.src = "img/mario/robot-left.svg";
-
-        /* Mode Iframe */
-        IMGIFRAME.className = "left";
-        IMGIFRAME.src = "img/mario/robot-left.svg";
-        return;
-    }else if(IMG.className == "left" && IMGIFRAME.className == "left"){
-        IMG.className = "backward";
-        IMG.src = "img/mario/robot-backward.svg";
-
-        /* Mode Iframe */
-        IMGIFRAME.className = "backward";
-        IMGIFRAME.src = "img/mario/robot-backward.svg";
-        return;
-    }else if(IMG.className == "backward" && IMGIFRAME.className == "backward"){
-        IMG.className = "right";
-        IMG.src = "img/mario/robot-right.svg";
-
-        /* Mode Iframe */
-        IMGIFRAME.className = "right";
-        IMGIFRAME.src = "img/mario/robot-right.svg";
-        return;
-    }else if(IMG.className == "right" && IMGIFRAME.className == "right"){
-        IMG.className = "forward";
-        IMG.src = "img/mario/robot-forward.svg";
-
-        /* Mode Iframe */
-        IMGIFRAME.className = "forward";
-        IMGIFRAME.src = "img/mario/robot-forward.svg";
-        return;
-    }
-} 
-
-/* Change Robot Rotation onClick turnToRight Button */
-function turnToRight() {
-
-    // Treatment
-    if(IMG.className == "forward" && IMGIFRAME.className == "forward"){
-        IMG.className = "right";
-        IMG.src = "img/mario/robot-right.svg";
-
-        /* Mode Iframe */
-        IMGIFRAME.className = "right";
-        IMGIFRAME.src = "img/mario/robot-right.svg";
-        return;
-    }else if(IMG.className == "right" && IMGIFRAME.className == "right"){
-        IMG.className = "backward";
-        IMG.src = "img/mario/robot-backward.svg";
-
-        /* Mode Iframe */
-        IMGIFRAME.className = "backward";
-        IMGIFRAME.src = "img/mario/robot-backward.svg";
-        return;
-    }else if(IMG.className == "backward" && IMGIFRAME.className == "backward"){
-        IMG.className = "left";
-        IMG.src = "img/mario/robot-left.svg";
-
-        /* Mode Iframe */
-        IMGIFRAME.className = "left";
-        IMGIFRAME.src = "img/mario/robot-left.svg";
-        return;
-    }else if(IMG.className == "left" && IMGIFRAME.className == "left"){
-        IMG.className = "forward";
-        IMG.src = "img/mario/robot-forward.svg";
-
-        /* Mode Iframe */
-        IMGIFRAME.className = "forward";
-        IMGIFRAME.src = "img/mario/robot-forward.svg";
-        return;
-    }
-} 
-
 
 /*
 ######################################
@@ -257,6 +173,7 @@ function onLoaded(event){
     agent.connect();
     agent.addEventListener("connected", onConnected);
     agent.addEventListener("updated", onUpdated);
+    agent.addEventListener("dirChanged", onDirChanged)
 }
 
 /**
@@ -324,6 +241,47 @@ function onUpdated(event){
 
     let agent = event.src;
     console.log("Updated Agent" + agent.id);
+
+    agent.lookTo((agent.dir + 2)%4);
+}
+
+function onDirChanged(event){
+    let agent = event.src;
+    console.log(agent.dir);
+
+    let IMG = document.querySelector("#displayRobot");
+    let IMGIFRAME = document.querySelector("#iFrameDisplayRobot");
+
+    switch(agent.dir){
+        case 0:
+            IMG.className = "forward";
+            IMG.src = "img/mario/robot-forward.svg";
+
+            IMGIFRAME.className = "forward";
+            IMGIFRAME.src = "img/mario/robot-forward.svg";
+            break;
+        case 1:
+            IMG.className = "backward";
+            IMG.src = "img/mario/robot-backward.svg";
+
+            IMGIFRAME.className = "backward";
+            IMGIFRAME.src = "img/mario/robot-backward.svg";
+            break;
+        case 2:
+            IMG.className = "left";
+            IMG.src = "img/mario/robot-left.svg";
+
+            IMGIFRAME.className = "left";
+            IMGIFRAME.src = "img/mario/robot-left.svg";
+            break;
+        case 3:
+            IMG.className = "right";
+            IMG.src = "img/mario/robot-right.svg";
+            
+            IMGIFRAME.className = "right";
+            IMGIFRAME.src = "img/mario/robot-right.svg";
+            break;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", onLoaded);
