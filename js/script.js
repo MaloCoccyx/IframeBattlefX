@@ -108,6 +108,37 @@ function onAmmoChanged(event){
     ammo[3].style.background = ammoBg;
 
 }
+
+function modeAutoOn(event){
+    document.querySelector("#modeAutoOn").className = "disabled";
+    document.querySelector("#modeAutoOff").className = "enabled";
+    document.getElementById("moveToForward").disabled = true;
+    document.getElementById("moveToBackward").disabled = true;
+    document.getElementById("moveToLeft").disabled = true;
+    document.getElementById("moveToRight").disabled = true;
+    document.getElementById("turnToLeft").disabled = true;
+    document.getElementById("turnToRight").disabled = true;
+    document.getElementById("shooting").disabled = true;
+}
+
+function modeAutoOff(event){
+    readonly = false;
+    console.log(readonly);
+    document.querySelector("#modeAutoOff").className = "disabled";
+    document.querySelector("#modeAutoOn").className = "enabled";
+    document.getElementById("moveToForward").disabled = false;
+    document.getElementById("moveToBackward").disabled = false;
+    document.getElementById("moveToLeft").disabled = false;
+    document.getElementById("moveToRight").disabled = false;
+    document.getElementById("turnToLeft").disabled = false;
+    document.getElementById("turnToRight").disabled = false;
+    document.getElementById("shooting").disabled = false;
+}
+
+/**
+ * 
+ * @param {string} params Get classname to animate the robotBox 
+ */
 function removeAnimClass(params){
     let robotBox = document.querySelector("#robotBox").classList;
     robotBox.remove("isMoveToForward");
@@ -179,6 +210,9 @@ function onLoaded(event){
     fireButton.addEventListener('mousedown', isShooting);
     fireButton.addEventListener('mouseup', stopShooting);
 
+    document.querySelector("#modeAutoOn").addEventListener('click', modeAutoOn);
+    document.querySelector("#modeAutoOff").addEventListener('click', modeAutoOff);
+
     document.querySelector("#moveToBackward").addEventListener('click', moveToBackward);
     document.querySelector("#moveToRight").addEventListener('click', moveToRight);
     document.querySelector("#moveToForward").addEventListener('click', moveToForward);
@@ -219,5 +253,7 @@ function onLoaded(event){
 
     agent.addEventListener('lifeChanged', onLifeChanged);
     agent.addEventListener('ammoChanged', onAmmoChanged);
+
+    if(readonly != false) modeAutoOn();
 }
 document.addEventListener("DOMContentLoaded", onLoaded);
