@@ -1,5 +1,3 @@
-import { Agent } from "./iframebattlefx.js";
-
 /*
 ################################
 ##                            ##
@@ -28,16 +26,6 @@ var moveAndRotate = [
     document.querySelector('#moveToForward'), document.querySelector('#moveToLeft'), document.querySelector('#moveToBackward'), 
     document.querySelector('#shooting')
 ];
-
-
-/*
-################################
-## Initialize Robot Variables ##
-################################
-*/
-var modeAuto = false;
-var robotState = "isBorn";
-var robotDead = false;
 
 
 /*
@@ -180,10 +168,6 @@ function soundOnOff(){
 }
 
 /*
-########################
-## Change Robot State ##
-########################
-*/
 
 function displayRobotState(){
     // Treatment
@@ -253,56 +237,35 @@ function stateChanged(Parameter){
     }
 }
 
-
-
-/*
-########################
-## Connected to Arena ##
-########################
-*/
+/**
+ * 
+ * @param {Event} event 
+ */
 function onLoaded(event){
-    // Get params in URL
-    var url = new URL(window.location.href);
-    console.log(url);
+    console.log(event);
 
-    /** 
-     * Creates and connects the agent in the arena
-     * with parameters pass through url
-     * 
-     * @param {string} 	id          The wanted name of the agent
-     * @param {string} 	username    Username to connect to the server
-     * @param {string} 	password    User password coming with the username to connect to the server
-     * @param {string}  arena       The name of the arena to join (iframebattlefx)
-     * @param {number}  port        The server port number (443)
-     * @param {string}  server      The server URL (mqtt.jusdeliens.com)
-     * @param {number} 	verbose     The wanted verbosity of the logs. 0: None, 1: Error, 2: Warning, 3: Info, 4: Debug
-     * @param {Boolean} readonly    Set to true to only read agent state (default). False to be able to control agent.
-    */
-    var id = url.searchParams.get('id');
-    var readOnly = url.searchParams.get('readonly');
-    var userName = url.searchParams.get('username');
-    var passWord = url.searchParams.get('password');
-    var port = url.searchParams.get('port');
-    var arena = url.searchParams.get('arena');
-    var server = url.searchParams.get('server');
-    var verbose = url.searchParams.get('verbose');
-
-    /**
-     * Connecting to pytactx and subscribe to agent events
-    */
-
-    var agent = new Agent(
-        "toto", // id
-        "demo", // arena
+    let agent = new Agent(
+        "guillaume_lequart", // id
         "demo", // username
-        "demo", // password 
+        "demo", // password
+        "iframebattlefx", // arena 
         "8080", // port
         "mqtt.jusdeliens.com", // server
-        3, // verbose
-        true // true
+        4, // verbose
+        false // true
     );
     agent.connect();
+    agent.addEventListener("connected", onConnected);
+    agent.addEventListener("updated", onUpdated);
+}
 
+/**
+ * 
+ * @param {AgentEvent} event 
+ */
+function onConnected(event){
+    let agent = event.src;
+    console.log("Agent connected " + agent.id);
     document.getElementById("idRobot").textContent = agent.id; // Get Robot Name
 
     /**
@@ -312,7 +275,7 @@ function onLoaded(event){
      */
     let percentAmmo = (((agent.ammo) / 100) * 100);
     let ammoBg = "linear-gradient(to right, var(--ammo) " + percentAmmo +"%,transparent " + percentAmmo +"%)";
-    
+
     let ammo = [
         document.getElementById("ammo"),
         document.getElementById("ammoShort"),
@@ -353,13 +316,14 @@ function onLoaded(event){
 
 
 
-/*
-############
-## Update ##
-############
-*/
-function onUpdate(){
+/**
+ * 
+ * @param {AgentEvent} event 
+ */
+function onUpdated(event){
 
+    let agent = event.src;
+    console.log("Updated Agent" + agent.id);
 }
 
 document.addEventListener("DOMContentLoaded", onLoaded);
