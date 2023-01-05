@@ -8,10 +8,9 @@
 ################################
 */
 var agent;
-var robotBox = document.querySelector("#robotBox");
 
 /**
- * 
+ * Function when robot is connected
  * @param {AgentEvent} event 
  */
 function onConnected(event){
@@ -22,7 +21,7 @@ function onConnected(event){
 }
 
 /**
- * 
+ * Function to updated robot
  * @param {AgentEvent} event 
  */
 function onUpdated(event){
@@ -30,7 +29,8 @@ function onUpdated(event){
 }
 
 /**
- * 
+ * Function to change rotation of image and image Iframe when robot
+ * change the direction where his look
  * @param {AgentEvent} event 
  */
 function onDirChanged(event){
@@ -42,17 +42,17 @@ function onDirChanged(event){
 }
 
 /**
- * 
+ * Function to actualize life
  * @param {AgentEvent} event 
  */
 function onLifeChanged(event){
     /**
-     * @var {number}  percentlife Calculate the percentage of life
+     * @var {number}  percentLife Calculate the percentage of life
      * @var {string}  lifeBg Change the background gradient uses percentAmmo as value for percentage
      * @var {Array}   life Get all elements of ammo bar (responsive elements) and put it into array to easily modify them
      */
-    let percentlife = (((agent.life) / 100) * 100);
-    let lifeBg = "linear-gradient(to right, var(--is-dead) " + percentlife +"%,transparent " + percentlife +"%)";
+    let percentLife = (((agent.life) / 100) * 100);
+    let lifeBg = "linear-gradient(to right, var(--is-dead) " + percentLife +"%,transparent " + percentLife +"%)";
 
     let life = [
         document.getElementById("life"),
@@ -79,7 +79,7 @@ function onLifeChanged(event){
 }
 
 /**
- * 
+ * Function to actualize ammo
  * @param {AgentEvent} event 
  */
 function onAmmoChanged(event){
@@ -109,6 +109,11 @@ function onAmmoChanged(event){
 
 }
 
+/**
+ * Function, to turn on automatic mode when click on modeAutoOn button
+ * and disabled all manual control button
+ * @param {AgentEvent} event 
+ */
 function modeAutoOn(event){
     document.querySelector("#modeAutoOn").className = "disabled";
     document.querySelector("#modeAutoOff").className = "enabled";
@@ -121,6 +126,11 @@ function modeAutoOn(event){
     document.getElementById("shooting").disabled = true;
 }
 
+/**
+ * Function, to turn off automatic mode when click on modeAutoOff button
+ * and enable all manual control button
+ * @param {AgentEvent} event 
+ */
 function modeAutoOff(event){
     readonly = false;
     console.log(readonly);
@@ -136,7 +146,7 @@ function modeAutoOff(event){
 }
 
 /**
- * 
+ * Function to remove animation class and add another animation if params is set
  * @param {string} params Get classname to animate the robotBox 
  */
 function removeAnimClass(params){
@@ -151,46 +161,78 @@ function removeAnimClass(params){
     if(params != null) robotBox.add(params);
 }
 
+/**
+ * Function to Shoot with robot after mouseUp on fireButton
+ * @param {AgentEvent} event 
+ */
 function isShooting(event){
     agent.fire(true);
     removeAnimClass("isShooting");
     console.log("Is Shooting!");
 }
 
+/**
+ * Function robot stop shooting after mouseDown fireButton
+ * @param {AgentEvent} event 
+ */
 function stopShooting(event){
     agent.fire(false);
     console.log("Stop shooting!");
 }
 
+/**
+ * Function, move to forward (north) when click on moveToForward button
+ * @param {AgentEvent} event 
+ */
 function moveToForward(event){
     agent.move(0,-1);
     removeAnimClass("isMoveToForward");
     console.log("Déscend d'une case");
 }
 
+/**
+ * Function, move to backward (south) when click on moveToBackward button
+ * @param {AgentEvent} event 
+ */
 function moveToBackward(event){
     agent.move(0,1);
     removeAnimClass("isMoveToBackward");
     console.log("Monte d'une case");
 }
 
+/**
+ * Function, move to left (west) when click on moveToLeft button
+ * @param {AgentEvent} event 
+ */
 function moveToLeft(event){
     agent.move(-1, 0);
     removeAnimClass("isMoveToLeft");
     console.log("A gauche d'une case");
 }
 
+/**
+ * Function, move to right (east) when click on moveToRight button
+ * @param {AgentEvent} event 
+ */
 function moveToRight(event){
     agent.move(1, 0);
     removeAnimClass("isMoveToRight");
     console.log("A droite d'une case");
 }
 
+/**
+ * Function, turn to right when click on turnToRight button
+ * @param {AgentEvent} event 
+ */
 function turnToRight(event){
     agent.lookTo(agent.dir + 1);
     console.log("Se tourne vers la droite");
 }
 
+/**
+ * Function, turn to left when click on turnToLeft button
+ * @param {AgentEvent} event 
+ */
 function turnToLeft(event){
     if(agent.dir <= 0 || agent.dir >= 4){
         agent.lookTo(0);
@@ -201,7 +243,7 @@ function turnToLeft(event){
 }
 
 /**
- * 
+ * Function to initialize robot 
  * @param {Event} event 
  */
 function onLoaded(event){
@@ -239,7 +281,7 @@ function onLoaded(event){
         "guillaume_lequart", // id
         "demo", // username
         "demo", // password
-        "iframebattlefx", // arena 
+        "demo", // arena 
         "8080", // port
         "mqtt.jusdeliens.com", // server
         verbosity, // verbose, 0, 1, 2, 3, 4
