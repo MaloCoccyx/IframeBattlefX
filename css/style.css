@@ -310,64 +310,68 @@ span.isBorn, span.isTakeDamage, span.isShooting, span.isDead, span.isAlive{
 /************************/
 /*  turnToRight  */
 button#turnToRight{
-    background-image: url("../img/controller/curved-arrow/curved-arrow-right-green-icon.svg");
+    background-image: url("../img/controller/curved-arrow-green-icon.svg");
+    transform: scale(-1, 1);
 }
 
 button#turnToRight:hover, button#turnToRight:active{
-    background-image: url("../img/controller/curved-arrow/curved-arrow-right-red-icon.svg");
+    background-image: url("../img/controller/curved-arrow-red-icon.svg");
 }
 
 /*  turnToLeft  */
 button#turnToLeft{
-    background-image: url("../img/controller/curved-arrow/curved-arrow-left-green-icon.svg");
+    background-image: url("../img/controller/curved-arrow-green-icon.svg");
 }
 
 button#turnToLeft:hover, button#turnToLeft:active{
-    background-image: url("../img/controller/curved-arrow/curved-arrow-left-red-icon.svg");
+    background-image: url("../img/controller/curved-arrow-red-icon.svg");
 }
 
 /*  moveToForward  */
 button#moveToForward{
-    background-image: url("../img/controller/black-arrow/black-top-arrow-icon.svg");
+    background-image: url("../img/controller/black-arrow-icon.svg");
     position: relative;
     top: 5px;
 }
 
 button#moveToForward:hover, button#moveToForward:active{
-    background-image: url("../img/controller/line-arrow/line-top-arrow-icon.svg");
+    background-image: url("../img/controller/line-arrow-icon.svg");
 }
 
 /*  moveToLeft  */
 button#moveToLeft{
-    background-image: url("../img/controller/black-arrow/black-left-arrow-icon.svg");
+    background-image: url("../img/controller/black-arrow-icon.svg");
+    transform: rotate(-90deg);
     position: relative;
     left: 5px;
 }
 
 button#moveToLeft:hover, button#moveToLeft:active{
-    background-image: url("../img/controller/line-arrow/line-left-arrow-icon.svg");
+    background-image: url("../img/controller/line-arrow-icon.svg");
 }
 
 /*  moveToRight  */
 button#moveToRight{
-    background-image: url("../img/controller/black-arrow/black-right-arrow-icon.svg");
+    background-image: url("../img/controller/black-arrow-icon.svg");
+    transform: rotate(90deg);
     position: relative;
     right: 5px;
 }
 
 button#moveToRight:hover, button#moveToRight:active{
-    background-image: url("../img/controller/line-arrow/line-right-arrow-icon.svg");
+    background-image: url("../img/controller/line-arrow-icon.svg");
 }
 
 /*  moveToBackward  */
 button#moveToBackward{
-    background-image: url("../img/controller/black-arrow/black-bottom-arrow-icon.svg");
+    background-image: url("../img/controller/black-arrow-icon.svg");
+    transform: rotate(180deg);
     position: relative;
     bottom: 5px;
 }
 
 button#moveToBackward:hover, button#moveToBackward:active{
-    background-image: url("../img/controller/line-arrow/line-bottom-arrow-icon.svg");
+    background-image: url("../img/controller/line-arrow-icon.svg");
 }
 
 /*********************/

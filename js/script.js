@@ -219,7 +219,7 @@ function moveToRight(event){
  * Function, turn to right when click on turnToRight button
  * @param {AgentEvent} event 
  */
-function turnToRight(event){
+function turnToLeft(event){
     let direction = 0;
     if((agent.dir + 1) > 3){
         agent.lookTo(0);
@@ -236,7 +236,7 @@ function turnToRight(event){
  * Function, turn to left when click on turnToLeft button
  * @param {AgentEvent} event 
  */
-function turnToLeft(event){
+function turnToRight(event){
     let direction = 0;
     if((agent.dir - 1) < 0){
         agent.lookTo(3);
