@@ -10,18 +10,28 @@
 var agent;
 
 /**
- * Function when robot is connected
+ * Robot is connected
  * @param {AgentEvent} event 
  */
 function onConnected(event){
     console.log("Agent connected " + agent.id);
     document.getElementById("idRobot").textContent = agent.id; // Get Robot Name
-    robotBox.className = "flex isBorn";
+    changeClass("isBorn");
 
 }
 
 /**
- * Function to updated robot
+ * Robot is disconnected
+ * @param {event} event 
+ */
+function onDisconnected(event){
+    console.log("Agent " + agent.id + " disconnected!");
+    changeClass("isDead");
+    modeAuto("true");
+}
+
+/**
+ * Updated robot
  * @param {AgentEvent} event 
  */
 function onUpdated(event){
@@ -29,7 +39,7 @@ function onUpdated(event){
 }
 
 /**
- * Function, change direction where robot look, return rotateImage(params)
+ * Change direction where robot look, return rotateImage(params)
  * @param {AgentEvent} event 
  */
 function onDirChanged(event){
@@ -37,7 +47,7 @@ function onDirChanged(event){
 }
 
 /**
- * Function to actualize life
+ * Actualize life
  * @param {AgentEvent} event 
  */
 function onLifeChanged(event){
@@ -74,7 +84,7 @@ function onLifeChanged(event){
 }
 
 /**
- * Function to actualize ammo
+ * Actualize ammo
  * @param {AgentEvent} event 
  */
 function onAmmoChanged(event){
@@ -105,46 +115,38 @@ function onAmmoChanged(event){
 }
 
 /**
- * Function, to turn on automatic mode when click on modeAutoOn button
- * and disabled all manual control button
+ * Turn on/off automatic mode when click on button#modeAutoOff or button#modeAutoOn
+ * & enable/disable all manual control buttons
  * @param {AgentEvent} event 
  */
-function modeAutoOn(event){
-    document.querySelector("#modeAutoOn").className = "disabled";
-    document.querySelector("#modeAutoOff").className = "enabled";
-    document.getElementById("moveToForward").disabled = true;
-    document.getElementById("moveToBackward").disabled = true;
-    document.getElementById("moveToLeft").disabled = true;
-    document.getElementById("moveToRight").disabled = true;
-    document.getElementById("turnToLeft").disabled = true;
-    document.getElementById("turnToRight").disabled = true;
-    document.getElementById("shooting").disabled = true;
+function modeAuto(params){
+    if(params == "false"){
+        readonly = false;
+        console.log(readonly);
+        document.querySelector("#modeAutoOff").className = "disabled";
+        document.querySelector("#modeAutoOn").className = "enabled";
+        params = false;
+    }else if(params == "true"){
+        readonly = true;
+        document.querySelector("#modeAutoOn").className = "disabled";
+        document.querySelector("#modeAutoOff").className = "enabled";
+        params = true;
+    }
+    // Enable / disable buttons to manual control
+    document.getElementById("moveToForward").disabled = params;
+    document.getElementById("moveToBackward").disabled = params;
+    document.getElementById("moveToLeft").disabled = params;
+    document.getElementById("moveToRight").disabled = params;
+    document.getElementById("turnToLeft").disabled = params;
+    document.getElementById("turnToRight").disabled = params;
+    document.getElementById("shooting").disabled = params;
 }
 
 /**
- * Function, to turn off automatic mode when click on modeAutoOff button
- * and enable all manual control button
- * @param {AgentEvent} event 
- */
-function modeAutoOff(event){
-    readonly = false;
-    console.log(readonly);
-    document.querySelector("#modeAutoOff").className = "disabled";
-    document.querySelector("#modeAutoOn").className = "enabled";
-    document.getElementById("moveToForward").disabled = false;
-    document.getElementById("moveToBackward").disabled = false;
-    document.getElementById("moveToLeft").disabled = false;
-    document.getElementById("moveToRight").disabled = false;
-    document.getElementById("turnToLeft").disabled = false;
-    document.getElementById("turnToRight").disabled = false;
-    document.getElementById("shooting").disabled = false;
-}
-
-/**
- * Function to remove animation class and add another animation if params is set
+ * Remove animation class and add the new if {params} is set
  * @param {string} params Get classname to animate the robotBox 
  */
-function removeAnimClass(params){
+function changeClass(params){
     let robotBox = document.querySelector("#robotBox").classList;
     robotBox.remove("isMoveToForward");
     robotBox.remove("isMoveToBackward");
@@ -157,62 +159,47 @@ function removeAnimClass(params){
 }
 
 /**
- * Function to Shoot with robot after mouseUp on fireButton
- * @param {AgentEvent} event 
+ * Robot start shooting after "mouseUp" on button#shooting
+ * & robot stop shooting after "mouseDown" on button#shooting
+ * @param {string} params 
  */
-function isShooting(event){
-    agent.fire(true);
-    removeAnimClass("isShooting");
-    console.log("Is Shooting!");
+function isShooting(params){
+    if(params == "true"){
+        agent.fire(true);
+        changeClass("isShooting");
+        console.log("Is Shooting!");
+
+    // Stop Shooting
+    }else if(params == "false"){
+        agent.fire(false);
+        console.log("Stop shooting!");
+    }
 }
 
 /**
- * Function robot stop shooting after mouseDown fireButton
- * @param {AgentEvent} event 
+ * Function to move robot to East{Right}, South{Backward}, West{West} or North{North}
+ * when click on button#isMoveTo{params}
+ * @param {string} params 
  */
-function stopShooting(event){
-    agent.fire(false);
-    console.log("Stop shooting!");
-}
+function moveTo(params){
 
-/**
- * Function, move to forward (north) when click on moveToForward button
- * @param {AgentEvent} event 
- */
-function moveToForward(event){
-    agent.move(0,-1);
-    removeAnimClass("isMoveToForward");
-    console.log("Déscend d'une case");
-}
+    switch(params){
+        case "Right":
+            agent.move(1, 0);
+            break;
+        case "Forward":
+            agent.move(0, 1);
+            break;
+        case "Backward": 
+            agent.move(0, -1);
+            break;
+        case "Left":
+            agent.move(-1, 0);
+            break;
+    }
 
-/**
- * Function, move to backward (south) when click on moveToBackward button
- * @param {AgentEvent} event 
- */
-function moveToBackward(event){
-    agent.move(0,1);
-    removeAnimClass("isMoveToBackward");
-    console.log("Monte d'une case");
-}
-
-/**
- * Function, move to left (west) when click on moveToLeft button
- * @param {AgentEvent} event 
- */
-function moveToLeft(event){
-    agent.move(-1, 0);
-    removeAnimClass("isMoveToLeft");
-    console.log("A gauche d'une case");
-}
-
-/**
- * Function, move to right (east) when click on moveToRight button
- * @param {AgentEvent} event 
- */
-function moveToRight(event){
-    agent.move(1, 0);
-    removeAnimClass("isMoveToRight");
-    console.log("A droite d'une case");
+    // Remove old animation and change it to the new
+    changeClass("isMoveTo" + params);
 }
 
 /**
@@ -263,42 +250,63 @@ function rotateImage(params){
 }
 
 /**
- * Function to initialize robot 
+ * Function to initialize robot & interactions
  * @param {Event} event 
  */
 function onLoaded(event){
-
+    // When click on button#shooting robot shoot once
     let fireButton = document.querySelector("#shooting")
-    fireButton.addEventListener('mousedown', isShooting);
-    fireButton.addEventListener('mouseup', stopShooting);
+    fireButton.addEventListener('mousedown', () => {
+        isShooting("true");
+    });
+    fireButton.addEventListener('mouseup', () => {
+        isShooting("false");
+    });
 
-    document.querySelector("#modeAutoOn").addEventListener('click', modeAutoOn);
-    document.querySelector("#modeAutoOff").addEventListener('click', modeAutoOff);
+    // Enable / disable automatic mode
+    document.querySelector("#modeAutoOn").addEventListener('click', () => {
+        modeAuto("true");
+    });
+    document.querySelector("#modeAutoOff").addEventListener('click', () => {
+        modeAuto("false");
+    });
 
-    document.querySelector("#moveToBackward").addEventListener('click', moveToBackward);
-    document.querySelector("#moveToRight").addEventListener('click', moveToRight);
-    document.querySelector("#moveToForward").addEventListener('click', moveToForward);
-    document.querySelector("#moveToLeft").addEventListener('click', moveToLeft);
+    // Move robot in arena
+    document.querySelector("#moveToBackward").addEventListener('click', () => {
+        moveTo("Backward");
+    });
+    document.querySelector("#moveToRight").addEventListener('click', () => {
+        moveTo("Right");
+    });
+    document.querySelector("#moveToForward").addEventListener('click', () => {
+        moveTo("Forward");
+    });
+    document.querySelector("#moveToLeft").addEventListener('click', () => {
+        moveTo("Left");
+    });
 
+    // Turn the robot
     document.querySelector("#turnToLeft").addEventListener('click', turnToLeft);
     document.querySelector("#turnToRight").addEventListener('click', turnToRight);
 
-
+    // Get params in URL
     let url = new URLSearchParams(window.location.search);
     console.log(event);
 
-    let id = url.get('agentid');
+    let agentid = url.get('agentid');
     let readonly = url.get('readonly');
     let verbosity = url.get('verbosity');
 
+    // Make default value for readonly and verbosity
     readonly = ( readonly == null ) ? true : (readonly === 'true');
 	verbosity = ( verbosity == null ) ? 1 : parseInt(verbosity);
 	console.log(`Creating agent ...`);
 	console.log(`readonly:${readonly}`);
 	console.log(`verbosity:${verbosity}`);
 
+    // Create an instance of robot
     agent = new Agent(
-        "guillaume_lequart", // id
+        agentid, // id
         "demo", // username
         "demo", // password
         "demo", // arena 
@@ -308,6 +316,7 @@ function onLoaded(event){
         readonly // true or false
     );
 
+    // Connect agent and add events
     agent.connect();
     agent.addEventListener("connected", onConnected);
     agent.addEventListener("updated", onUpdated);
@@ -316,6 +325,12 @@ function onLoaded(event){
     agent.addEventListener('lifeChanged', onLifeChanged);
     agent.addEventListener('ammoChanged', onAmmoChanged);
 
-    if(readonly != false) modeAutoOn();
+    // Disable manual mode if readonly == true and enable manual mode if readonly == false
+    if(readonly == false) modeAuto("false");
+    if(readonly == true) modeAuto("true");
+
+    // If agent is disconnected
+    agent.addEventListener("disconnected", onDisconnected);
 }
+
 document.addEventListener("DOMContentLoaded", onLoaded);

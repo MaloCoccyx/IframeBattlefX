@@ -460,6 +460,10 @@ button.enabled{
     display: inline-block;
 }
 
+button:disabled, button[disabled]{
+    cursor:not-allowed;
+}
+
 /*********************/
 /*  Supervisor Mode  */
 /*********************/
@@ -505,14 +509,10 @@ button.enabled{
         display: flex;
     }
 
-    #iFrameInfos{
-        width: 100%;
-        height: 10%;
-    }
-
     #iFrame > div, #iFrame > div > progress{
         display: flex;
-        width: 75%;
+        width: 95%;
+        max-height: 10px;
     }
 
     #iFrame > div > p.ammo, #iFrame > div > p.life{
@@ -526,6 +526,7 @@ button.enabled{
         line-height: 20px;
         border: 1px solid var(--is-dead);
         border-left: 0px;
+        margin-top: 1px;
     }
 
     #iframe > div > p.ammo{
