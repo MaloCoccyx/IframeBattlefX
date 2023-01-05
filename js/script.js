@@ -29,16 +29,11 @@ function onUpdated(event){
 }
 
 /**
- * Function to change rotation of image and image Iframe when robot
- * change the direction where his look
+ * Function, change direction where robot look, return rotateImage(params)
  * @param {AgentEvent} event 
  */
 function onDirChanged(event){
-    let img = document.querySelector("#displayRobot");
-    let imgIframe = document.querySelector("#iFrameDisplayRobot");
-
-	img.style.transform = "rotate("+agent.dir*90+"deg)";
-    imgIframe.style.transform = "rotate("+agent.dir*90+"deg)";
+    rotateImage(agent.dir);
 }
 
 /**
@@ -225,8 +220,16 @@ function moveToRight(event){
  * @param {AgentEvent} event 
  */
 function turnToRight(event){
-    agent.lookTo(agent.dir + 1);
-    console.log("Se tourne vers la droite");
+    let direction = 0;
+    if((agent.dir + 1) > 3){
+        agent.lookTo(0);
+        direction = 0;
+    }else{
+        agent.lookTo(agent.dir + 1);
+        console.log("Se tourne vers la droite " + agent.dir);
+        direction = agent.dir + 1;
+    }
+    rotateImage(direction);
 }
 
 /**
@@ -234,12 +237,29 @@ function turnToRight(event){
  * @param {AgentEvent} event 
  */
 function turnToLeft(event){
-    if(agent.dir <= 0 || agent.dir >= 4){
-        agent.lookTo(0);
+    let direction = 0;
+    if((agent.dir - 1) < 0){
+        agent.lookTo(3);
+        direction = 3;
     }else{
         agent.lookTo(agent.dir - 1);
         console.log("Se tourne vers la gauche " + agent.dir);
+        direction = agent.dir - 1;
     }
+    rotateImage(direction);
+}
+
+/**
+ * Function to change rotation of image and image Iframe when robot
+ * change the direction where his look
+ * @param {params} params 
+ */
+function rotateImage(params){
+    let img = document.querySelector("#displayRobot");
+    let imgIframe = document.querySelector("#iFrameDisplayRobot");
+
+	img.style.transform = "rotate(-"+params*90+"deg)";
+    imgIframe.style.transform = "rotate(-"+params*90+"deg)";
 }
 
 /**
@@ -261,7 +281,7 @@ function onLoaded(event){
     document.querySelector("#moveToLeft").addEventListener('click', moveToLeft);
 
     document.querySelector("#turnToLeft").addEventListener('click', turnToLeft);
-    document.querySelector("#turnToRight").addEventListener('click', turnToLeft);
+    document.querySelector("#turnToRight").addEventListener('click', turnToRight);
 
 
     let url = new URLSearchParams(window.location.search);
