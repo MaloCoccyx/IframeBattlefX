@@ -404,21 +404,12 @@ button#moveToBackward:hover, button#moveToBackward:active{
 }
 
 /*  modeAutoOn  */
-button#modeAutoOn{
-    background-image: url("../img/actions/modeAuto/turn-on-icon.svg");
+button#modeAutoOn, button#modeAutoOff:hover, button#modeAutoOff:active{
+    background-image: url("../img/actions/turn-on-icon.svg");
 }
 
-button#modeAutoOn:hover, button#modeAutoOn:active{
-    background-image: url("../img/actions/modeAuto/turn-off-hover-icon.svg");
-}
-
-/*  modeAutoOff  */
-button#modeAutoOff{
-    background-image: url("../img/actions/modeAuto/turn-off-icon.svg");
-}
-
-button#modeAutoOff:hover, button#modeAutoOff:active{
-    background-image: url("../img/actions/modeAuto/turn-on-hover-icon.svg");
+button#modeAutoOn:hover, button#modeAutoOn:active, button#modeAutoOff{
+    background-image: url("../img/actions/turn-off-icon.svg");
 }
 
 /* souindOn & sound Off */
@@ -434,14 +425,14 @@ button#soundOn, button#soundOff{
 
 /*  soundOn & soundOff (hover & active) */
 button#soundOn, button#soundOff:hover, button#soundOff:active{
-    background-image: url("../img/actions/sound/sound-on-icon.svg");
+    background-image: url("../img/actions/sound-on-icon.svg");
     background-color: white;
     border-color: black;
 }
 
 /*  soundOff & soundOn (hover & active) */
 button#soundOff, button#soundOn:hover, button#soundOn:active{
-    background-image: url("../img/actions/sound/sound-off-icon.svg");
+    background-image: url("../img/actions/sound-off-icon.svg");
 }
 
 /*  shooting  */
