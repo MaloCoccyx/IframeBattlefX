@@ -7,27 +7,45 @@
 ##                            ##
 ################################
 */
+/**
+ * @var {Agent} agent           Instance of object {Agent}
+ * @var {string} buttonAutoOn   get button #modeAutoOn
+ * @var {string} buttonAutoOff  get button #modeAutoOff
+ * @var {number} direction      0:East - 1:North - 2:West - 3:South
+ * @var {number} maxLife        set max life of robot (agent.life)
+ * @var {number} maxAmmo        set max ammo of robot (agent.ammo)
+ * @var {bool} controlAuto      mode auto: true = enable | false = disable
+ */
 var agent;
+var buttonAutoOn;
+var buttonAutoOff;
+var direction;
+var maxLife;
+var maxAmmo;
+var controlAuto;
 
 /**
  * Robot is connected
+ * Change state & makke sure manual control is enable
  * @param {AgentEvent} event 
  */
 function onConnected(event){
     console.log("Agent connected " + agent.id);
     document.getElementById("idRobot").textContent = agent.id; // Get Robot Name
     changeClass("isBorn");
+    modeAuto("false");
 
 }
 
 /**
  * Robot is disconnected
+ * Change state & disable all buttons
  * @param {event} event 
  */
 function onDisconnected(event){
     console.log("Agent " + agent.id + " disconnected!");
     changeClass("isDead");
-    modeAuto("true");
+    modeAuto("true", true, true);
 }
 
 /**
@@ -36,6 +54,11 @@ function onDisconnected(event){
  */
 function onUpdated(event){
     console.log("Updated Agent " + agent.id);
+    if(controlAuto == true){
+        console.log("Contrôle automatique activé!");
+        modeAuto("true", true);
+    }
+    else console.log("Contrôle manuel!")
 }
 
 /**
@@ -52,33 +75,33 @@ function onDirChanged(event){
  */
 function onLifeChanged(event){
     /**
-     * @var {number}  percentLife Calculate the percentage of life
-     * @var {string}  lifeBg Change the background gradient uses percentAmmo as value for percentage
-     * @var {Array}   life Get all elements of ammo bar (responsive elements) and put it into array to easily modify them
+     * @var {number}  percentLife   Calculate the current percentage of life
+     * @var {string}  lifeBg        Change the background gradient uses percentLife as value for percentage
+     * @var {number}  life          Get current life of robot
+     * @var {Array}   htmlLife      Get all html elements of life bar (responsive elements) and put it into array to easily modify them
      */
-    let percentLife = (((agent.life) / 100) * 100);
+    let life = agent.life;
+    let percentLife = ((life / maxLife) * 100);
     let lifeBg = "linear-gradient(to right, var(--is-dead) " + percentLife +"%,transparent " + percentLife +"%)";
 
-    let life = [
+    let htmlLife = [
         document.getElementById("life"),
         document.getElementById("lifeShort"),
         document.getElementById("lifeIframe")
     ];
 
-    let oldLife = life;
-
-    life[0].textContent = "Vie : " + (((agent.life) / 100) * 100) + " / " + "100";
-    life[0].style.background = lifeBg;
-    life[1].textContent = "V: " + (((agent.life) / 100) * 100) + " / " + "100";
-    life[1].style.background = lifeBg;
-    life[2].textContent = (((agent.life) / 100) * 100) + " / " + "100";
-    life[2].style.background = lifeBg;
+    htmlLife[0].textContent = "Vie : " + percentLife + " / " + maxLife;
+    htmlLife[0].style.background = lifeBg;
+    htmlLife[1].textContent = "V: " + percentLife + " / " + maxLife;
+    htmlLife[1].style.background = lifeBg;
+    htmlLife[2].textContent = percentLife + " / " + maxLife;
+    htmlLife[2].style.background = lifeBg;
 
     if(life <= 0){
        robotBox.className = "flex isDead";
     }
 
-    if(oldLife < life){
+    if(life < maxLife && life > 0){
         robotBox.className = "flex isTakeDamage";
     }
 }
@@ -89,50 +112,62 @@ function onLifeChanged(event){
  */
 function onAmmoChanged(event){
     /*
-     * @var {number}  percentAmmo Calculate the percentage of ammo
-     * @var {string}  ammoBg Change the background gradient uses percentAmmo as value for percentage
-     * @var {Array}   ammo Get all elements of ammo bar (responsive elements) and put it into array to easily modify them
+     * @var {number}  percentAmmo   Calculate the percentage of ammo
+     * @var {string}  ammoBg        Change the background gradient uses percentAmmo as value for percentage
+     * @var {number}  ammo          Get current ammo of robot
+     * @var {Array}   htmlAmmo      Get all elements of ammo bar (responsive elements) and put it into array to easily modify them
      */
-    let percentAmmo = (((agent.ammo) / 100) * 100);
+    let percentAmmo = (((agent.ammo) / maxAmmo) * 100);
     let ammoBg = "linear-gradient(to right, var(--ammo) " + percentAmmo +"%,transparent " + percentAmmo +"%)";
-
-    let ammo = [
+    let ammo = agent.ammo;
+    let htmlAmmo = [
         document.getElementById("ammo"),
         document.getElementById("ammoShort"),
         document.getElementById("ammoExtraShort"),
         document.getElementById("ammoIframe")
     ];
 
-    ammo[0].textContent = "Munitnions : " + (((agent.ammo) / 100) * 100) + " / " + "100";
-    ammo[0].style.background = ammoBg;
-    ammo[1].textContent = "Mun: " + (((agent.ammo) / 100) * 100) + "/" + "100";
-    ammo[1].style.background = ammoBg;
-    ammo[2].textContent = "M: " + (((agent.ammo) / 100) * 100) + "/" + "100";
-    ammo[2].style.background = ammoBg;
-    ammo[3].textContent = (((agent.ammo) / 100) * 100) + "/" + "100";
-    ammo[3].style.background = ammoBg;
+    htmlAmmo[0].textContent = "Munitions : " + ammo + " / " + maxAmmo;
+    htmlAmmo[0].style.background = ammoBg;
+    htmlAmmo[1].textContent = "Mun: " + ammo + "/" + maxAmmo;
+    htmlAmmo[1].style.background = ammoBg;
+    htmlAmmo[2].textContent = "M: " + ammo + "/" + maxAmmo;
+    htmlAmmo[2].style.background = ammoBg;
+    htmlAmmo[3].textContent = ammo + "/" + maxAmmo;
+    htmlAmmo[3].style.background = ammoBg;
 
 }
 
 /**
- * Turn on/off automatic mode when click on button#modeAutoOff or button#modeAutoOn
+ * Turn on/off automatic mode when click on button#modeAutoOff or button#modeAutoOn and if {auto} == true
+ * If {noControl} == true, modeAuto is ON & disable all buttons (in case of disconnected/ readonly set to true)
  * & enable/disable all manual control buttons
- * @param {AgentEvent} event 
+ * 
+ * @param {string} params       Disable / Enable button
+ * @param {string} auto         Activate mode auto, default: "false"
+ * @param {string} noControl    disabl all buttons
  */
-function modeAuto(params){
+function modeAuto(params, auto = false, noControl = false){
+    if(auto == true){
+        autoMode = true;
+        controlAuto = true;
+    }else{
+        autoMode = false;
+        controlAuto = false;
+    }
+
     if(params == "false"){
-        readonly = false;
-        console.log(readonly);
-        document.querySelector("#modeAutoOff").className = "disabled";
-        document.querySelector("#modeAutoOn").className = "enabled";
+        buttonAutoOff.className = "disabled";
+        buttonAutoOn.className = "enabled";
         params = false;
     }else if(params == "true"){
-        readonly = true;
-        document.querySelector("#modeAutoOn").className = "disabled";
-        document.querySelector("#modeAutoOff").className = "enabled";
+        buttonAutoOn.className = "disabled";
+        buttonAutoOff.className = "enabled";
         params = true;
     }
     // Enable / disable buttons to manual control
+    buttonAutoOff.disabled = noControl;
+    buttonAutoOn.disabled = noControl;
     document.getElementById("moveToForward").disabled = params;
     document.getElementById("moveToBackward").disabled = params;
     document.getElementById("moveToLeft").disabled = params;
@@ -153,6 +188,7 @@ function changeClass(params){
     robotBox.remove("isMoveToLeft");
     robotBox.remove("isMoveToRight");
     robotBox.remove("isShooting");
+    robotBox.remove("isDead");
     robotBox.remove("isTakeDamage");
 
     if(params != null) robotBox.add(params);
@@ -207,7 +243,6 @@ function moveTo(params){
  * @param {AgentEvent} event 
  */
 function turnToLeft(event){
-    let direction = 0;
     if((agent.dir + 1) > 3){
         agent.lookTo(0);
         direction = 0;
@@ -224,7 +259,6 @@ function turnToLeft(event){
  * @param {AgentEvent} event 
  */
 function turnToRight(event){
-    let direction = 0;
     if((agent.dir - 1) < 0){
         agent.lookTo(3);
         direction = 3;
@@ -239,14 +273,11 @@ function turnToRight(event){
 /**
  * Function to change rotation of image and image Iframe when robot
  * change the direction where his look
- * @param {params} params 
+ * @param {params} params   0:East - 1:North - 2:West - 3:South
  */
 function rotateImage(params){
-    let img = document.querySelector("#displayRobot");
-    let imgIframe = document.querySelector("#iFrameDisplayRobot");
-
-	img.style.transform = "rotate(-"+params*90+"deg)";
-    imgIframe.style.transform = "rotate(-"+params*90+"deg)";
+	document.querySelector("#displayRobot").style.transform = "rotate(-"+params*90+"deg)";
+    document.querySelector("#iFrameDisplayRobot").style.transform = "rotate(-"+params*90+"deg)";
 }
 
 /**
@@ -264,10 +295,13 @@ function onLoaded(event){
     });
 
     // Enable / disable automatic mode
-    document.querySelector("#modeAutoOn").addEventListener('click', () => {
+    buttonAutoOff = document.querySelector("#modeAutoOff");
+    buttonAutoOn = document.querySelector("#modeAutoOn");
+
+    buttonAutoOn.addEventListener('click', () => {
         modeAuto("true");
     });
-    document.querySelector("#modeAutoOff").addEventListener('click', () => {
+    buttonAutoOff.addEventListener('click', () => {
         modeAuto("false");
     });
 
@@ -319,18 +353,25 @@ function onLoaded(event){
     // Connect agent and add events
     agent.connect();
     agent.addEventListener("connected", onConnected);
+
+    maxAmmo = agent.ammo;
+    maxLife = agent.life;
+
+    // Enable automatic mode if readonly == true, else disable it
+    if(readonly == true){
+        controlAuto = true;
+        modeAuto("true", true, true);
+    }
+
     agent.addEventListener("updated", onUpdated);
     agent.addEventListener("dirChanged", onDirChanged);
 
     agent.addEventListener('lifeChanged', onLifeChanged);
     agent.addEventListener('ammoChanged', onAmmoChanged);
 
-    // Disable manual mode if readonly == true and enable manual mode if readonly == false
-    if(readonly == false) modeAuto("false");
-    if(readonly == true) modeAuto("true");
-
     // If agent is disconnected
     agent.addEventListener("disconnected", onDisconnected);
+
 }
 
 document.addEventListener("DOMContentLoaded", onLoaded);
