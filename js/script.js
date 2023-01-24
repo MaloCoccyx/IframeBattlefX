@@ -34,6 +34,7 @@ function onConnected(event){
     document.getElementById("idRobot").textContent = agent.id; // Get Robot Name
     changeClass("isBorn");
     modeAuto("false");
+    fetch("http://localhost:8080/isBorn");
 
 }
 
@@ -46,6 +47,7 @@ function onDisconnected(event){
     console.log("Agent " + agent.id + " disconnected!");
     changeClass("isDead");
     modeAuto("true", true, true);
+    fetch("http://localhost:8080/isDead");
 }
 
 /**
@@ -54,11 +56,26 @@ function onDisconnected(event){
  */
 function onUpdated(event){
     console.log("Updated Agent " + agent.id);
+    console.log(controlAuto);
     if(controlAuto == true){
         console.log("Contrôle automatique activé!");
-        modeAuto("true", true);
+        modeAuto("true", true, true);
+          // Random moving agent
+        agent.move(
+            Math.floor(Math.random() * 3) - 1,
+            Math.floor(Math.random() * 3) - 1
+        );
+        let dir = (agent.dir + 1) % 4;
+        agent.lookTo(dir);
+        if(agent.d > 0){
+            isShooting("true");
+        }
+
     }
-    else console.log("Contrôle manuel!")
+    else console.log("Contrôle manuel!");
+    if(agent.life <= 0){
+        fetch("http://localhost:8080/isDead");
+    }
 }
 
 /**
@@ -81,7 +98,7 @@ function onLifeChanged(event){
      * @var {Array}   htmlLife      Get all html elements of life bar (responsive elements) and put it into array to easily modify them
      */
     let life = agent.life;
-    let percentLife = ((life / maxLife) * 100);
+    let percentLife = (((agent.life) / 100) * 100);
     let lifeBg = "linear-gradient(to right, var(--is-dead) " + percentLife +"%,transparent " + percentLife +"%)";
 
     let htmlLife = [
@@ -90,19 +107,23 @@ function onLifeChanged(event){
         document.getElementById("lifeIframe")
     ];
 
-    htmlLife[0].textContent = "Vie : " + percentLife + " / " + maxLife;
+    htmlLife[0].textContent = "Vie : " + percentLife + " / " + maxLife ;
     htmlLife[0].style.background = lifeBg;
     htmlLife[1].textContent = "V: " + percentLife + " / " + maxLife;
     htmlLife[1].style.background = lifeBg;
     htmlLife[2].textContent = percentLife + " / " + maxLife;
     htmlLife[2].style.background = lifeBg;
+    robotBox.className = "flex isTakeDamage";
+    fetch("http://localhost:8080/isTakeDamage");
 
     if(life <= 0){
        robotBox.className = "flex isDead";
+       fetch("http://localhost:8080/isDead");
     }
 
     if(life < maxLife && life > 0){
         robotBox.className = "flex isTakeDamage";
+        fetch("http://localhost:8080/isTakeDamage");
     }
 }
 
@@ -117,7 +138,7 @@ function onAmmoChanged(event){
      * @var {number}  ammo          Get current ammo of robot
      * @var {Array}   htmlAmmo      Get all elements of ammo bar (responsive elements) and put it into array to easily modify them
      */
-    let percentAmmo = (((agent.ammo) / maxAmmo) * 100);
+    let percentAmmo = (((agent.ammo) / 100) * 100);
     let ammoBg = "linear-gradient(to right, var(--ammo) " + percentAmmo +"%,transparent " + percentAmmo +"%)";
     let ammo = agent.ammo;
     let htmlAmmo = [
@@ -126,14 +147,13 @@ function onAmmoChanged(event){
         document.getElementById("ammoExtraShort"),
         document.getElementById("ammoIframe")
     ];
-
-    htmlAmmo[0].textContent = "Munitions : " + ammo + " / " + maxAmmo;
+    htmlAmmo[0].textContent = "Munitions : " + ammo + " / 100";
     htmlAmmo[0].style.background = ammoBg;
-    htmlAmmo[1].textContent = "Mun: " + ammo + "/" + maxAmmo;
+    htmlAmmo[1].textContent = "Mun: " + ammo + "/100";
     htmlAmmo[1].style.background = ammoBg;
-    htmlAmmo[2].textContent = "M: " + ammo + "/" + maxAmmo;
+    htmlAmmo[2].textContent = "M: " + ammo + "/100";
     htmlAmmo[2].style.background = ammoBg;
-    htmlAmmo[3].textContent = ammo + "/" + maxAmmo;
+    htmlAmmo[3].textContent = ammo + "/100";
     htmlAmmo[3].style.background = ammoBg;
 
 }
@@ -149,10 +169,8 @@ function onAmmoChanged(event){
  */
 function modeAuto(params, auto = false, noControl = false){
     if(auto == true){
-        autoMode = true;
         controlAuto = true;
     }else{
-        autoMode = false;
         controlAuto = false;
     }
 
@@ -166,7 +184,6 @@ function modeAuto(params, auto = false, noControl = false){
         params = true;
     }
     // Enable / disable buttons to manual control
-    buttonAutoOff.disabled = noControl;
     buttonAutoOn.disabled = noControl;
     document.getElementById("moveToForward").disabled = params;
     document.getElementById("moveToBackward").disabled = params;
@@ -204,7 +221,7 @@ function isShooting(params){
         agent.fire(true);
         changeClass("isShooting");
         console.log("Is Shooting!");
-
+        fetch("http://localhost:8080/isShooting");
     // Stop Shooting
     }else if(params == "false"){
         agent.fire(false);
@@ -224,10 +241,10 @@ function moveTo(params){
             agent.move(1, 0);
             break;
         case "Forward":
-            agent.move(0, 1);
+            agent.move(0, -1);
             break;
         case "Backward": 
-            agent.move(0, -1);
+            agent.move(0, 1);
             break;
         case "Left":
             agent.move(-1, 0);
@@ -280,11 +297,16 @@ function rotateImage(params){
     document.querySelector("#iFrameDisplayRobot").style.transform = "rotate(-"+params*90+"deg)";
 }
 
+function playSound(params){
+    
+}
+
 /**
  * Function to initialize robot & interactions
  * @param {Event} event 
  */
 function onLoaded(event){
+
     // When click on button#shooting robot shoot once
     let fireButton = document.querySelector("#shooting")
     fireButton.addEventListener('mousedown', () => {
@@ -299,10 +321,15 @@ function onLoaded(event){
     buttonAutoOn = document.querySelector("#modeAutoOn");
 
     buttonAutoOn.addEventListener('click', () => {
-        modeAuto("true");
+        modeAuto("true", true);
     });
     buttonAutoOff.addEventListener('click', () => {
-        modeAuto("false");
+        modeAuto("false", false );
+    });
+
+    // Sound buttonOn
+    document.querySelector("#soundOn").addEventListener('click', () => {
+        playSound(playSoundBorn);
     });
 
     // Move robot in arena
@@ -343,7 +370,7 @@ function onLoaded(event){
         agentid, // id
         "demo", // username
         "demo", // password
-        "demo", // arena 
+        "iframebattlefx", // arena 
         "8080", // port
         "mqtt.jusdeliens.com", // server
         verbosity, // verbose, 0, 1, 2, 3, 4
@@ -358,7 +385,7 @@ function onLoaded(event){
     maxLife = agent.life;
 
     // Enable automatic mode if readonly == true, else disable it
-    if(readonly == true){
+    if(readonly == true || readonly == 'true'){
         controlAuto = true;
         modeAuto("true", true, true);
     }
