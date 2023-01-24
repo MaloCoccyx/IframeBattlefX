@@ -297,10 +297,6 @@ function rotateImage(params){
     document.querySelector("#iFrameDisplayRobot").style.transform = "rotate(-"+params*90+"deg)";
 }
 
-function playSound(params){
-    
-}
-
 /**
  * Function to initialize robot & interactions
  * @param {Event} event 
