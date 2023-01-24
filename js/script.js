@@ -387,10 +387,10 @@ function onLoaded(event){
     // Create an instance of robot
     agent = new Agent(
         agentid, // id
-        "demo", // username
-        "demo", // password
-        "iframebattlefx", // arena 
-        "8080", // port
+        "", // username
+        "", // password
+        "", // arena 
+        "", // port
         "mqtt.jusdeliens.com", // server
         verbosity, // verbose, 0, 1, 2, 3, 4
         readonly // true or false
