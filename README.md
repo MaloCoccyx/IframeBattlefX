@@ -36,13 +36,16 @@ En tant qu'administrateur je veux avoir:
 ## Fariqué avec
 
 Programmes utilisés:
-* **[Figma](https://www.figma.com/ "Figma")** (conception de la maquette)
-* **[Trello](https://trello.com/ "Trello")** (suivi du projet)
-* **[Visual Studio Code](https://code.visualstudio.com/ "VSCode")** (utilisé pour la programmation)
+* **[Figma](https://www.figma.com/)** (conception de la maquette)
+* **[Trello](https://trello.com/)** (suivi du projet)
+* **[Visual Studio Code](https://code.visualstudio.com/)** (utilisé pour la programmation) 
+* **[FileZilla](https://filezilla-project.org/)** (utilisé pour la mise en ligne des fichiers sur le serveur web)
+* **[API IframeBattlefX](https://github.com/MaloCoccyx/IframeBattlefX/blob/main/js/iframebattlefx.js)** (API JavaScript pour intéragir avec le robot sur le serveur)
+* **[Serveur pytactx Jusdeliens.com](http://jusdeliens.com/play/pytactx/)** (Utilisé pour voir l'arène (le serveur) sur lequel se connecte le robot)
 
 Languages utilisés:
 * **HTML** et **CSS** (conception du front-end)
-* **Javascript**
+* **Javascript** (intéraction avec l'API et utilisation de DOM)
 
 ## Auteur
 
