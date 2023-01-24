@@ -346,6 +346,29 @@ function onLoaded(event){
         moveTo("Left");
     });
 
+    // Movement & interactions with keyboard
+    document.addEventListener('keydown', (event) => {
+        const keyName = event.key;
+
+        if (keyName === 'ArrowUp') {
+            moveTo("Forward");
+            return;
+        }
+
+        if (keyName === 'ArrowLeft') {
+            moveTo("Left");
+            return;
+        }
+        if (keyName === 'ArrowRight') {
+            moveTo("Right");
+            return;
+        }
+        if (keyName === 'ArrowDown') {
+            moveTo("Backward");
+            return;
+        }
+    }, false);
+
     // Turn the robot
     document.querySelector("#turnToLeft").addEventListener('click', turnToLeft);
     document.querySelector("#turnToRight").addEventListener('click', turnToRight);
