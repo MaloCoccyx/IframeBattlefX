@@ -51,6 +51,7 @@ Languages utilisés:
 * **Javascript** (Intéraction avec l'API et utilisation de DOM)
 * **Python** (Utilisé pour jouer les mélodies et les lumières correspondant à l'état du robot)
 
+Mermaid:
 ```mermaid
 sequenceDiagram
     Navigateur->>+Apache: Connexion au site (GET) URL
