@@ -59,10 +59,17 @@ sequenceDiagram
     Note right of Navigateur: readonly = lecture seule (bool)
     Note right of Navigateur: verbosity = log (int)
 
+
     Apache->>+index.html: Squelette de la page
     index.html->>+Navigateur: Récupération de l'HTML
     Apache->>+css/style.css: Style (design)
+    Apache->>+js/script.js: Script
+    Apache->>+js/iframebattlefx.js:API iframebattlefx
+    Apache->>+js/paho-mqtt.js: Broker MQTT
     css/style.css->>+Navigateur: Récupération du style
+    js/script.js->>+Navigateur: Execution
+    js/iframebattlefx.js->>+Navigateur: Execution
+    js/paho-mqtt.js->>+Navigateur: Execution
     
     Apache->>+js/script.js: JavaScript (onDomContentLoaded)
     js/script.js->>+js/iframebattlefx.js: Evoie des paramètres passé en URL ainsi que les intéractions
