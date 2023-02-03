@@ -67,9 +67,9 @@ sequenceDiagram
     Apache->>+js/iframebattlefx.js:API iframebattlefx
     Apache->>+js/paho-mqtt.js: Broker MQTT
     css/style.css->>+Navigateur: Récupération du style
-    js/script.js->>+Navigateur: Execution
-    js/iframebattlefx.js->>+Navigateur: Execution
     js/paho-mqtt.js->>+Navigateur: Execution
+    js/iframebattlefx.js->>+Navigateur: Execution
+    js/script.js->>+Navigateur: Execution
     
     Apache->>+js/script.js: JavaScript (onDomContentLoaded)
     js/script.js->>+js/iframebattlefx.js: Evoie des paramètres passé en URL ainsi que les intéractions
