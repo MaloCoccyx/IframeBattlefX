@@ -42,12 +42,51 @@ Programmes utilisés:
 * **[FileZilla](https://filezilla-project.org/)** (utilisé pour la mise en ligne des fichiers sur le serveur web)
 * **[API IframeBattlefX](https://github.com/MaloCoccyx/IframeBattlefX/blob/main/js/iframebattlefx.js)** (API JavaScript pour intéragir avec le robot sur le serveur)
 * **[Serveur pytactx Jusdeliens.com](http://jusdeliens.com/play/pytactx/)** (Utilisé pour voir l'arène (le serveur) sur lequel se connecte le robot)
+* **[Python3](https://www.python.org/download/releases/3.0/)** (Utilisé pour le framework Flask et jouer les sons et lumières avec le robot)
+* **[Flask](https://flask.palletsprojects.com/)** (Framework Web Python)
 * **[Docker](https://www.docker.com/)** (Utilisé pour le serveur python (Python3 & Flask) et apprendre linux)
 
 Languages utilisés:
 * **HTML** et **CSS** (Conception du front-end)
 * **Javascript** (Intéraction avec l'API et utilisation de DOM)
 * **Python** (Utilisé pour jouer les mélodies et les lumières correspondant à l'état du robot)
+
+```mermaid
+sequenceDiagram
+    Navigateur->>+Apache: Connexion au site (GET) URL
+    Note right of Navigateur: Paramètres
+    Note right of Navigateur: agentId = id de l'agent (string)
+    Note right of Navigateur: readonly = lecture seule (bool)
+    Note right of Navigateur: verbosity = log (int)
+
+    Apache->>+index.html: Squelette de la page
+    index.html->>+Navigateur: Récupération de l'HTML
+    Apache->>+css/style.css: Style (design)
+    css/style.css->>+Navigateur: Récupération du style
+    
+    Apache->>+js/script.js: JavaScript (onDomContentLoaded)
+    js/script.js->>+js/iframebattlefx.js: Evoie des paramètres passé en URL ainsi que les intéractions
+    js/iframebattlefx.js->>+js/paho-mqtt.js: Connexion au serveur mqtt.jusdeliens.com
+    js/paho-mqtt.js->>+js/iframebattlefx.js: Retourne les informations du robot 
+    js/iframebattlefx.js->>+js/script.js: Créé l'objet Agent (robot)
+    js/script.js->>+Navigateur: Execution
+    Navigateur->>+Apache: Intéraction
+    Apache->>+js/script.js: Execution de la fonction suivant l'intéraction effectuée
+    js/script.js->>+js/iframebattlefx.js: Traitement
+    js/iframebattlefx.js->>+js/paho-mqtt.js: Traitement
+    js/paho-mqtt.js->>+js/iframebattlefx.js: Retourne le résultat
+    js/iframebattlefx.js->>+js/script.js: Retourne le résultat
+    js/script.js->>+Navigateur: Retourne le résultat (effectue les changement visuels si besoin (direction du robot, état))
+    Navigateur->>+Apache: Mode automatique
+    Apache->>+js/script.js: Passage au mode automatique
+    loop Mode automatique et fonction "onUpdate" (200ms env)
+        js/script.js->>+js/iframebattlefx.js: Traitement
+        js/iframebattlefx.js->>+js/paho-mqtt.js: Traitement
+        js/paho-mqtt.js->>+js/iframebattlefx.js: Retourne le résultat
+        js/iframebattlefx.js->>+js/script.js: Retourne le résultat
+        js/script.js->>+Navigateur: Retourne le résultat (effectue les changement visuels si besoin (direction du robot, état))
+    end
+```
 
 ## Auteur
 
